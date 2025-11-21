@@ -1,0 +1,1191 @@
+{% extends "navbar.html" %}
+
+{% block title %}Catálogo - Vinil'os{% endblock %}
+
+{% block content %}
+
+<!-- Catalog Hero Section -->
+<section class="catalog-hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1>Descubre Nuestro Catálogo</h1>
+                    <p>Explora nuestra amplia selección de vinilos, desde clásicos atemporales hasta los lanzamientos más frescos del panorama musical actual.</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-img">
+                    <img src="https://lh3.googleusercontent.com/d/1UvKWVsFN3CPozLBBiuScM8Z6A7eVlZEp" alt="Catálogo Vinilos" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Lo Más Relevante Section -->
+<section class="most-relevant-section section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-center">
+                    <h2>Lo Más Relevante</h2>
+                    <p>Los vinilos más destacados de nuestra colección</p>
+                </div>
+            </div>
+        </div>
+        <div class="row products-grid" id="products-grid">
+            <!-- Los productos se cargan dinámicamente con JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section id="featured-products" class="featured-section section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-center">
+                    <h2>Nuestros Vinilos</h2>
+                    <p id="section-subtitle">Descubre nuestra colección completa</p>
+                </div>
+            </div>
+        </div>
+        <div class="row products-grid" id="featured-products-grid">
+            <!-- Los productos se cargan dinámicamente con JavaScript -->
+        </div>
+        
+        <!-- Classifier Section -->
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <div class="classifier-section section-padding">
+                    <div class="classifier-container">
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">
+                                <i class="fas fa-th-large"></i> Todos
+                            </button>
+                            <button class="filter-btn" data-filter="rock">
+                                <i class="fas fa-guitar"></i> Rock
+                            </button>
+                            <button class="filter-btn" data-filter="pop">
+                                <i class="fas fa-music"></i> Pop
+                            </button>
+                            <button class="filter-btn" data-filter="rock-progresivo">
+                                <i class="fas fa-drum"></i> Rock Progresivo
+                            </button>
+                            <button class="filter-btn" data-filter="rock-mexicano">
+                                <i class="fas fa-star"></i> Rock Mexicano
+                            </button>
+                            <button class="filter-btn" data-filter="electronic">
+                                <i class="fas fa-sliders-h"></i> Electrónica
+                            </button>
+                            <button class="filter-btn" data-filter="country">
+                                <i class="fas fa-hat-cowboy"></i> Country
+                            </button>
+                            <button class="filter-btn" data-filter="soundtrack">
+                                <i class="fas fa-film"></i> Soundtrack
+                            </button>
+                        </div>
+                        <div class="filter-info text-center mt-4">
+                            <p>Mostrando <span id="product-count">0</span> productos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modales y toast se mantienen igual -->
+<!-- Login Required Modal -->
+<div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-labelledby="loginRequiredModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content custom-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginRequiredModalLabel">Inicio de Sesión Requerido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="fas fa-user-lock modal-icon" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                <p>Debes iniciar sesión para agregar productos al carrito.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a href="/login" class="btn primary-btn">Iniciar Sesión</a>
+                <a href="/signup" class="btn secondary-btn">Registrarse</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stock Limit Modal -->
+<div class="modal fade" id="stockLimitModal" tabindex="-1" aria-labelledby="stockLimitModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content custom-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="stockLimitModalLabel">Stock Agotado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="fas fa-exclamation-triangle modal-icon" style="font-size: 3rem; color: #ffc107; margin-bottom: 20px;"></i>
+                <p id="stockLimitMessage">Lo sentimos, este producto ya no está disponible.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn primary-btn" data-bs-dismiss="modal">Entendido</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Product Detail Modal -->
+<div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content custom-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productDetailModalLabel">Detalles del Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="product-detail-img">
+                            <img id="detail-product-image" src="" alt="Product Image" class="img-fluid rounded">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product-detail-info">
+                            <h3 id="detail-product-name" class="mb-2"></h3>
+                            <p id="detail-product-artist" class="text-muted mb-3"></p>
+                            <div class="mb-3">
+                                <span class="badge bg-primary" id="detail-product-genre"></span>
+                                <span class="badge bg-secondary ms-2" id="detail-product-stock"></span>
+                            </div>
+                            <p id="detail-product-description" class="mb-4"></p>
+                            <div class="d-flex align-items-center mb-4">
+                                <h4 id="detail-product-price" class="text-warning mb-0 me-3"></h4>
+                                <span id="detail-original-price" class="text-muted text-decoration-line-through"></span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <button id="detail-add-to-cart" class="btn primary-btn me-3">
+                                    Añadir al Carrito
+                                </button>
+                                <button class="btn secondary-btn" data-bs-dismiss="modal">
+                                    Seguir Explorando
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="cart-toast">
+    <i class="fas fa-check-circle"></i>
+    <span>Producto añadido al carrito</span>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Montserrat:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary-color: #d43f20;
+    --secondary-color: #e9d07e;
+    --accent-color-1: #817d6b;
+    --accent-color-2: #006f73;
+    --accent-color-3: #615b4d;
+    --accent-color-4: #0f7064;
+    --dark-bg: #122c2b;
+    --text-color: #f8f9fa;
+    --light-text: #e9ecef;
+    --card-bg: #1a3a39;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--dark-bg);
+}
+
+/* Tipografía */
+h1, h2, h3, h4, .section-title h2 {
+    font-family: 'Patrick Hand SC', cursive;
+    font-weight: normal;
+}
+
+h5, h6, .section-title p, .product-details h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+p, span, .artist, .footer-menu a, .footer-copyright p {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Catalog Hero Section */
+.catalog-hero-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #1a3a39 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.catalog-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230f7064' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--light-text);
+    font-weight: 300;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 15px;
+}
+
+.primary-btn, .secondary-btn {
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.primary-btn {
+    background-color: var(--primary-color)!important;
+    color: white;
+    border: 2px solid var(--primary-color);
+}
+
+.primary-btn:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 63, 32, 0.4);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.secondary-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--dark-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(233, 208, 126, 0.4);
+}
+
+.hero-img img {
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border: 2px solid var(--accent-color-4);
+}
+
+/* Section Padding */
+.section-padding {
+    padding: 80px 0;
+}
+
+/* Section Title */
+.section-title {
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.section-title p {
+    color: var(--light-text);
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+/* Most Relevant Section */
+.most-relevant-section {
+    background-color: var(--card-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.most-relevant-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(212, 63, 32, 0.1) 0%, transparent 50%);
+}
+
+/* Classifier Section Styles */
+.classifier-section {
+    background-color: var(--card-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.classifier-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(15, 112, 100, 0.1) 0%, transparent 50%);
+}
+
+.classifier-container {
+    background: var(--dark-bg);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 1px solid var(--accent-color-4);
+}
+
+/* Estilos del filtro mejorado */
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    background-color: var(--card-bg);
+    border: 2px solid var(--accent-color-4);
+    color: var(--light-text);
+    padding: 12px 20px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.filter-btn:hover {
+    background-color: var(--accent-color-4);
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 5px 15px rgba(212, 63, 32, 0.4);
+    transform: translateY(-2px);
+}
+
+.filter-btn i {
+    font-size: 1.1rem;
+}
+
+.filter-info {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid var(--accent-color-4);
+}
+
+#filter-results {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+/* Products */
+.featured-section {
+    background-color: var(--dark-bg);
+}
+
+.single-product {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+    border: 1px solid var(--accent-color-4);
+    position: relative;
+    cursor: pointer;
+}
+
+.single-product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border-color: var(--secondary-color);
+}
+
+.product-img {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.single-product:hover .product-img img {
+    transform: scale(1.1);
+}
+
+.product-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--primary-color);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.stock-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    z-index: 2;
+}
+
+.in-stock {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.low-stock {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+    border: 1px solid #ffc107;
+}
+
+.out-of-stock {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.product-action {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.single-product:hover .product-action {
+    bottom: 20px;
+}
+
+.product-action .btn {
+    width: auto;
+    height: auto;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: var(--dark-bg);
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 1px solid var(--accent-color-4);
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.product-action .btn:hover:not(:disabled) {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
+    border-color: var(--primary-color);
+}
+
+.product-action .btn:disabled {
+    background: var(--accent-color-1);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.product-details {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-details h6 {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: var(--light-text);
+    font-size: 1rem;
+}
+
+.artist {
+    color: var(--accent-color-1);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.price h6 {
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.original-price {
+    color: var(--accent-color-1);
+    text-decoration: line-through;
+    font-size: 0.9rem;
+}
+
+/* Product Detail Modal Styles */
+.product-detail-img img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.product-detail-info h3 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.product-detail-info .badge {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 50px;
+}
+
+.page-link {
+    background: var(--dark-bg);
+    border: 1px solid var(--accent-color-4);
+    color: var(--light-text);
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.page-link:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.page-item.active .page-link {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.page-item.disabled .page-link {
+    background: var(--accent-color-3);
+    border-color: var(--accent-color-4);
+    color: var(--accent-color-1);
+}
+
+/* Modal Styles */
+.custom-modal {
+    background: var(--card-bg);
+    border: 1px solid var(--accent-color-4);
+    border-radius: 15px;
+    color: var(--text-color);
+}
+
+.custom-modal .modal-header {
+    border-bottom: 1px solid var(--accent-color-4);
+}
+
+.custom-modal .modal-title {
+    color: var(--secondary-color);
+    font-family: 'Patrick Hand SC', cursive;
+}
+
+.custom-modal .btn-close {
+    filter: invert(1);
+}
+
+/* Toast Notification */
+.cart-toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--accent-color-4);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1050;
+    display: none;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-toast.show {
+    display: flex;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animaciones para los productos */
+.product-item {
+    transition: all 0.4s ease;
+}
+
+.product-item.hidden {
+    display: none !important;
+}
+
+.product-item.visible {
+    display: block;
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive para el filtro */
+@media (max-width: 768px) {
+    .filter-buttons {
+        gap: 8px;
+    }
+    
+    .filter-btn {
+        min-width: 120px;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .classifier-container {
+        padding: 20px;
+    }
+    
+    .filter-btn {
+        min-width: 160px;
+    }
+}
+
+@media (max-width: 767px) {
+    .catalog-hero-section {
+        padding: 60px 0;
+    }
+    
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .section-padding {
+        padding: 60px 0;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+    
+    .product-details {
+        padding: 15px;
+    }
+    
+    .classifier-container {
+        padding: 15px;
+    }
+    
+    .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+</style>
+
+<script>
+// Base de datos completa de productos - ACTUALIZADA
+const productsDatabase = [
+    // Productos relevantes
+    { id: 20, name: "Volumen 1", artist: "Caifanes", genre: "rock-mexicano", price: 800, image: "https://lh3.googleusercontent.com/d/1f4FLbkqCe_wNOWUNb08rwLmHSud_J9Qy", stock: 4, description: "Debut esencial del rock en español, con fusión de darkwave, post-punk y elementos mexicanos.", featured: true },
+    { id: 21, name: "Close to the Edge", artist: "Yes", genre: "rock-progresivo", price: 1050, image: "https://lh3.googleusercontent.com/d/1y89R3I26QPUDjuoqyiqjEFoyUEKdtJOQ", stock: 3, description: "Un hito del prog rock, con composiciones extensas y una ejecución instrumental impecable.", featured: true },
+    { id: 22, name: "In the Court of the Crimson King", artist: "King Crimson", genre: "rock-progresivo", price: 1300, image: "https://lh3.googleusercontent.com/d/1jKVjUsr8yzTna9KVGEwIh_clSBf3M8ZS", stock: 2, description: "Obra fundamental del progresivo, considerado uno de los discos más influyentes del siglo XX.", featured: true },
+    { id: 23, name: "The Dark Side of the Moon", artist: "Pink Floyd", genre: "rock-progresivo", price: 1100, image: "https://lh3.googleusercontent.com/d/13Lo9o4GXqMbbnLyZGvOJ2mNan2ut28rS", stock: 5, description: "Álbum conceptual legendario, con producción envolvente, mezcla impecable y arte icónico.", featured: true },
+    
+    // Resto de productos
+    { id: 1, name: "Melodrama", artist: "Lorde", genre: "pop", price: 780, image: "https://lh3.googleusercontent.com/d/1EJILuCv-Vb0B2vVDZ2fIGKQwbq8xCkJW", stock: 3, description: "Segundo álbum de Lorde, una obra conceptual sobre rupturas, juventud y soledad con producción envolvente y lírica emocional.", featured: false },
+    { id: 2, name: "The Essential Buck Owens", artist: "Buck Owens", genre: "country", price: 720, image: "https://lh3.googleusercontent.com/d/135ccT2WAjt-gjhAEg2NgtI6Z38l74DR9", stock: 0, description: "Colección esencial del pionero del Bakersfield sound, con sus éxitos más representativos y sonido analógico cálido.", featured: false },
+    { id: 3, name: "Back in Black", artist: "AC/DC", genre: "rock", price: 850, image: "https://lh3.googleusercontent.com/d/1KnG47E9Slhud7Q9RdDr3uE43nRa2eFZH", stock: 5, description: "Uno de los discos más vendidos de la historia, con riffs icónicos y una producción potente que define el rock de los 80.", featured: false },
+    { id: 4, name: "Alive 2007", artist: "Daft Punk", genre: "electronic", price: 1100, image: "https://lh3.googleusercontent.com/d/1qSkrk0C9c8J7xYVpvJ6RaIKq5w0LJTV9", stock: 2, description: "Registro del legendario tour 2007, considerado uno de los mejores álbumes en vivo de música electrónica.", featured: false },
+    { id: 5, name: "Music from Back to the Future", artist: "Varios", genre: "soundtrack", price: 800, image: "https://lh3.googleusercontent.com/d/1npfwqMN-Ywj9Uh0TlG0AhlR9OSH1eFih", stock: 4, description: "Banda sonora con temas icónicos del clásico ochentero, mezcla de rock, pop y piezas instrumentales.", featured: false },
+    { id: 6, name: "Hollywood's Bleeding", artist: "Post Malone", genre: "pop", price: 820, image: "https://lh3.googleusercontent.com/d/1rXGGZ803DA2IDepp8Prys7wkkvbHMFfv", stock: 3, description: "Tercer álbum de Post Malone, un proyecto melódico con colaboraciones destacadas y atmósferas oscuras.", featured: false },
+    { id: 7, name: "She's So Unusual", artist: "Cyndi Lauper", genre: "pop", price: 750, image: "https://lh3.googleusercontent.com/d/1sB__M7okIaj_X3P9KWqN87ni02hO3AhX", stock: 6, description: "Disco debut que marcó los 80 con hits como 'Girls Just Want to Have Fun' y 'Time After Time'.", featured: false },
+    { id: 8, name: "The Final Countdown", artist: "Europe", genre: "rock", price: 760, image: "https://lh3.googleusercontent.com/d/1RyYAevMYkRROU_2LyPZ0H-WK6cTlPyHY", stock: 4, description: "Álbum emblemático del glam europeo, famoso por su tema titular y su sonido épico de sintetizadores.", featured: false },
+    { id: 9, name: "Greatest Hits", artist: "Cheap Trick", genre: "rock", price: 720, image: "https://lh3.googleusercontent.com/d/1YNHFjq6m7vTPJIQ6r-nacWUOM__ls8mf", stock: 5, description: "Selección de temas esenciales del grupo, ideal para nuevos oyentes y coleccionistas.", featured: false },
+    { id: 10, name: "Cocktail", artist: "Belanova", genre: "pop", price: 780, image: "https://lh3.googleusercontent.com/d/1KAB3wJurtKnjN9BruAP-H005549jI3Vt", stock: 3, description: "Debut de la banda tapatía, con estética lounge-electro y canciones icónicas del pop 2000.", featured: false },
+    { id: 11, name: "Noviembre", artist: "Los Bunkers", genre: "rock", price: 820, image: "https://lh3.googleusercontent.com/d/1wCb9EmR9_xMG2nPODBI8t7oIqKnAcBat", stock: 2, description: "Uno de los discos más influyentes del rock chileno de los 2000, con letras introspectivas y guitarras brillantes.", featured: false },
+    { id: 12, name: "31 Minutos (OST)", artist: "31 Minutos", genre: "soundtrack", price: 700, image: "https://lh3.googleusercontent.com/d/1UC5EJPjbLZnOG-kw8M4QDHmXIY3JnQgc", stock: 7, description: "Canciones del icónico programa chileno, llenas de humor, nostalgia y arreglos pop-rock.", featured: false },
+    { id: 13, name: "Siempre te Recordaré", artist: "Los Acosta", genre: "pop", price: 650, image: "https://lh3.googleusercontent.com/d/1ohBiAbLFJKVpiBR_hWa9PU3K9LjB35Pn", stock: 4, description: "Melodías románticas y teclados característicos del sonido sentimental de Los Acosta.", featured: false },
+    { id: 14, name: "Internacionales y Románticos", artist: "Los Temerarios", genre: "pop", price: 700, image: "https://lh3.googleusercontent.com/d/1sXCcixgXKrdbio0ArNtg1AfGjR7kUl0c", stock: 3, description: "Uno de los álbumes más representativos del dúo, mezcla de balada y sonido regional.", featured: false },
+    { id: 15, name: "Beneath the Skin", artist: "Of Monsters and Men", genre: "rock", price: 830, image: "https://lh3.googleusercontent.com/d/1e9S2Q0AuR8SN4yEJWE7JqEzttTDFYXlo", stock: 2, description: "Álbum melancólico y atmosférico, con arreglos expansivos y voces armoniosas.", featured: false },
+    { id: 16, name: "Boston", artist: "Boston", genre: "rock", price: 850, image: "https://lh3.googleusercontent.com/d/1yqx8GCcO2NaniyDKTlAIE2vINMuZUlm4", stock: 5, description: "Debut explosivo con armonías impecables, riffs icónicos y sonido limpio que definió una era.", featured: false },
+    { id: 17, name: "Daltónico", artist: "Enjambre", genre: "rock", price: 780, image: "https://lh3.googleusercontent.com/d/1KXdtpjgrMYv4R4SZC9J8T59YYHfEJNCD", stock: 4, description: "Uno de los discos más queridos del rock mexicano, cargado de nostalgia, poesía y guitarras suaves.", featured: false },
+    { id: 18, name: "Artaud", artist: "Pescado Rabioso (Luis Alberto Spinetta)", genre: "rock", price: 1200, image: "https://lh3.googleusercontent.com/d/1NCEfBGtlnMdaPAgNqZrvy82DzI51lRlG", stock: 1, description: "Obra maestra del rock argentino, con estructura experimental y una de las ediciones más buscadas.", featured: false },
+    { id: 19, name: "Among My Swan", artist: "Mazzy Star", genre: "pop", price: 900, image: "https://lh3.googleusercontent.com/d/1aHMTXK19EkpSGNliVvhCHIlGFHU2Ms9T", stock: 3, description: "Paisajes sonoros etéreos y la voz profunda de Hope Sandoval en un disco hipnótico.", featured: false }
+];
+
+// SISTEMA MEJORADO DE ALMACENAMIENTO
+function initializeStorage() {
+    // Guardar productos en localStorage y sessionStorage para persistencia
+    localStorage.setItem('vinilos_products', JSON.stringify(productsDatabase));
+    sessionStorage.setItem('vinilos_products', JSON.stringify(productsDatabase));
+    
+    // Inicializar carrito si no existe
+    if (!localStorage.getItem('vinilos_cart')) {
+        localStorage.setItem('vinilos_cart', JSON.stringify([]));
+    }
+    if (!sessionStorage.getItem('vinilos_cart')) {
+        const cart = JSON.parse(localStorage.getItem('vinilos_cart')) || [];
+        sessionStorage.setItem('vinilos_cart', JSON.stringify(cart));
+    }
+}
+
+// Función para obtener datos del carrito
+function getCartData() {
+    try {
+        const sessionCart = sessionStorage.getItem('vinilos_cart');
+        const localCart = localStorage.getItem('vinilos_cart');
+        
+        if (sessionCart) {
+            return JSON.parse(sessionCart);
+        } else if (localCart) {
+            const cart = JSON.parse(localCart);
+            sessionStorage.setItem('vinilos_cart', JSON.stringify(cart));
+            return cart;
+        }
+        return [];
+    } catch (error) {
+        console.error('Error al cargar el carrito:', error);
+        return [];
+    }
+}
+
+// Función para guardar datos del carrito
+function saveCartData(cart) {
+    try {
+        sessionStorage.setItem('vinilos_cart', JSON.stringify(cart));
+        localStorage.setItem('vinilos_cart', JSON.stringify(cart));
+        
+        // Disparar evento personalizado para sincronización entre pestañas
+        window.dispatchEvent(new Event('cartUpdated'));
+    } catch (error) {
+        console.error('Error al guardar el carrito:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar almacenamiento
+    initializeStorage();
+    
+    // Cargar productos en las secciones
+    loadProducts();
+    
+    // Configurar el filtro
+    setupFilter();
+    
+    // Configurar eventos del carrito
+    setupCartFunctionality();
+    
+    // Sincronizar carrito entre pestañas
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'vinilos_cart') {
+            updateCartCount();
+        }
+    });
+    
+    // Escuchar evento personalizado de actualización de carrito
+    window.addEventListener('cartUpdated', function() {
+        updateCartCount();
+    });
+
+    // --- FUNCIONALIDAD DEL FILTRO MEJORADO ---
+    function setupFilter() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCount = document.getElementById('product-count');
+        
+        // Actualizar contador inicial
+        updateProductCount('all');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                // Actualizar botones activos
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filtrar productos
+                filterProducts(filter);
+                
+                // Actualizar contador
+                updateProductCount(filter);
+            });
+        });
+    }
+    
+    function filterProducts(filter) {
+        const allProducts = document.querySelectorAll('.product-item');
+        let visibleCount = 0;
+        
+        allProducts.forEach(product => {
+            const productGenre = product.getAttribute('data-category');
+            
+            if (filter === 'all' || productGenre === filter) {
+                product.classList.remove('hidden');
+                product.classList.add('visible');
+                visibleCount++;
+            } else {
+                product.classList.add('hidden');
+                product.classList.remove('visible');
+            }
+        });
+        
+        return visibleCount;
+    }
+    
+    function updateProductCount(filter) {
+        const productCount = document.getElementById('product-count');
+        const allProducts = document.querySelectorAll('.product-item');
+        let count = 0;
+        
+        if (filter === 'all') {
+            count = allProducts.length;
+        } else {
+            count = document.querySelectorAll(`.product-item[data-category="${filter}"]`).length;
+        }
+        
+        productCount.textContent = count;
+    }
+
+    // --- CARGA DINÁMICA DE PRODUCTOS ---
+    function loadProducts() {
+        const relevantGrid = document.getElementById('products-grid');
+        const featuredGrid = document.getElementById('featured-products-grid');
+        
+        // Limpiar grids
+        relevantGrid.innerHTML = '';
+        featuredGrid.innerHTML = '';
+        
+        // Separar productos relevantes y normales
+        const relevantProducts = productsDatabase.filter(product => product.featured);
+        const featuredProducts = productsDatabase.filter(product => !product.featured);
+        
+        // Cargar productos relevantes
+        relevantProducts.forEach(product => {
+            relevantGrid.appendChild(createProductCard(product));
+        });
+        
+        // Cargar productos del catálogo
+        featuredProducts.forEach(product => {
+            featuredGrid.appendChild(createProductCard(product));
+        });
+        
+        // Actualizar contador de productos
+        updateProductCount('all');
+    }
+    
+    function createProductCard(product) {
+        const col = document.createElement('div');
+        col.className = 'col-lg-3 col-md-6 product-item';
+        col.setAttribute('data-category', product.genre);
+        
+        // Determinar clase de stock
+        let stockClass = 'in-stock';
+        let stockText = `${product.stock} disponibles`;
+        
+        if (product.stock <= 0) {
+            stockClass = 'out-of-stock';
+            stockText = 'Agotado';
+        } else if (product.stock <= 2) {
+            stockClass = 'low-stock';
+            stockText = `Últimas ${product.stock} unidades`;
+        }
+        
+        col.innerHTML = `
+            <div class="single-product">
+                <div class="product-img">
+                    <img src="${product.image}" alt="${product.name}">
+                    ${product.featured ? '<div class="product-badge featured">Destacado</div>' : ''}
+                    <div class="stock-badge ${stockClass}">${stockText}</div>
+                    <div class="product-action">
+                        <button class="btn add-to-cart-btn" 
+                                data-id="${product.id}" 
+                                data-stock="${product.stock}" 
+                                data-name="${product.name}" 
+                                data-artist="${product.artist}" 
+                                data-genre="${product.genre}" 
+                                data-price="${product.price}" 
+                                data-image="${product.image}" 
+                                data-description="${product.description}"
+                                ${product.stock <= 0 ? 'disabled' : ''}>
+                            Añadir a carrito
+                        </button>
+                    </div>
+                </div>
+                <div class="product-details">
+                    <h6>${product.name}</h6>
+                    <p class="artist">${product.artist}</p>
+                    <div class="price">
+                        <h6>$${product.price} MXN</h6>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        return col;
+    }
+
+    // --- FUNCIONALIDAD DEL CARRITO MEJORADA ---
+    function setupCartFunctionality() {
+        // Configurar eventos para productos existentes y futuros
+        document.addEventListener('click', function(e) {
+            // Manejar clic en productos para mostrar detalles
+            if (e.target.closest('.single-product') && !e.target.closest('.product-action')) {
+                const productElement = e.target.closest('.single-product');
+                const addToCartBtn = productElement.querySelector('.add-to-cart-btn');
+                if (addToCartBtn) {
+                    const productId = addToCartBtn.getAttribute('data-id');
+                    showProductDetail(productId);
+                }
+            }
+            
+            // Manejar clic en botones de añadir al carrito
+            if (e.target.classList.contains('add-to-cart-btn')) {
+                e.stopPropagation();
+                const productId = e.target.getAttribute('data-id');
+                addToCart(productId);
+            }
+        });
+        
+        // Configurar botón de añadir al carrito en el modal
+        document.getElementById('detail-add-to-cart').addEventListener('click', function() {
+            const productId = this.getAttribute('data-product-id');
+            if (productId) {
+                addToCart(productId);
+                bootstrap.Modal.getInstance(document.getElementById('productDetailModal')).hide();
+            }
+        });
+    }
+    
+    function showProductDetail(productId) {
+        const product = productsDatabase.find(p => p.id == productId);
+        if (!product) return;
+        
+        const modal = document.getElementById('productDetailModal');
+        
+        // Actualizar elementos del modal
+        document.getElementById('detail-product-name').textContent = product.name;
+        document.getElementById('detail-product-artist').textContent = product.artist;
+        document.getElementById('detail-product-genre').textContent = product.genre;
+        document.getElementById('detail-product-description').textContent = product.description;
+        document.getElementById('detail-product-price').textContent = `$${product.price} MXN`;
+        document.getElementById('detail-product-image').src = product.image;
+        document.getElementById('detail-product-image').alt = product.name;
+        
+        // Actualizar información de stock
+        const stockElement = document.getElementById('detail-product-stock');
+        if (product.stock <= 0) {
+            stockElement.textContent = 'Agotado';
+            stockElement.className = 'badge bg-danger';
+            document.getElementById('detail-add-to-cart').disabled = true;
+        } else if (product.stock <= 2) {
+            stockElement.textContent = `Últimas ${product.stock} unidades`;
+            stockElement.className = 'badge bg-warning';
+            document.getElementById('detail-add-to-cart').disabled = false;
+        } else {
+            stockElement.textContent = `${product.stock} disponibles`;
+            stockElement.className = 'badge bg-success';
+            document.getElementById('detail-add-to-cart').disabled = false;
+        }
+        
+        // Guardar ID del producto en el botón
+        document.getElementById('detail-add-to-cart').setAttribute('data-product-id', productId);
+        
+        // Mostrar modal
+        new bootstrap.Modal(modal).show();
+    }
+    
+    function addToCart(productId) {
+        const product = productsDatabase.find(p => p.id == productId);
+        if (!product) return;
+        
+        // Verificar si el usuario está logueado (simulación)
+        const isLoggedIn = {% if session.get('logged_in') %}true{% else %}false{% endif %};
+        
+        if (!isLoggedIn) {
+            new bootstrap.Modal(document.getElementById('loginRequiredModal')).show();
+            return;
+        }
+        
+        // Verificar stock
+        if (product.stock <= 0) {
+            document.getElementById('stockLimitMessage').textContent = 
+                'Lo sentimos, este producto ya no está disponible.';
+            new bootstrap.Modal(document.getElementById('stockLimitModal')).show();
+            return;
+        }
+        
+        // Obtener carrito actual
+        let cart = getCartData();
+        
+        const existingItemIndex = cart.findIndex(item => item.id == productId);
+        
+        if (existingItemIndex !== -1) {
+            // Verificar que no exceda el stock disponible
+            if (cart[existingItemIndex].quantity >= product.stock) {
+                document.getElementById('stockLimitMessage').textContent = 
+                    'No hay suficiente stock disponible para este producto.';
+                new bootstrap.Modal(document.getElementById('stockLimitModal')).show();
+                return;
+            }
+            cart[existingItemIndex].quantity += 1;
+        } else {
+            cart.push({
+                id: productId,
+                name: product.name,
+                artist: product.artist,
+                genre: product.genre,
+                price: product.price,
+                image: product.image,
+                quantity: 1
+            });
+        }
+        
+        // Guardar carrito actualizado
+        saveCartData(cart);
+        updateCartCount();
+        
+        // Mostrar notificación
+        showToast();
+    }
+    
+    function updateCartCount() {
+        const cart = getCartData();
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+    }
+    
+    function showToast() {
+        const toast = document.querySelector('.cart-toast');
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+    
+    // Inicializar contador del carrito
+    updateCartCount();
+});
+</script>
+{% endblock %}

@@ -1,0 +1,645 @@
+{% extends "navbar.html" %}
+
+{% block title %}Iniciar Sesión - Vinil'os{% endblock %}
+
+{% block content %}
+
+<!-- Login Hero Section -->
+<section class="login-hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1>Bienvenido de Vuelta</h1>
+                    <p>Accede a tu cuenta para continuar explorando el maravilloso mundo de la música en vinilo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Login Form Section -->
+<section class="login-section section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="login-form-container">
+                    <div class="section-title text-center mb-5">
+                        <h2>Iniciar Sesión</h2>
+                        <p>Ingresa a tu cuenta personal</p>
+                    </div>
+
+                    {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        {{ error }}
+                    </div>
+                    {% endif %}
+
+                    <form class="form login" action="/login" method="POST" novalidate>
+                        <div class="form-group mb-4">
+                            <label for="email" class="form-label">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="form-control"
+                                placeholder="tu@email.com"
+                                required
+                                autofocus
+                                aria-label="Email"
+                            >
+                            <div class="form-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="form-control"
+                                placeholder="Tu contraseña"
+                                required
+                                aria-label="Contraseña"
+                            >
+                            <div class="form-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="remember">
+                                <label class="form-check-label" for="remember">
+                                    Recordar mi sesión
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions text-center mb-4">
+                            <button class="btn primary-btn btn-lg w-100" type="submit">
+                                <i class="fas fa-sign-in-alt me-2"></i>
+                                Iniciar Sesión
+                            </button>
+                        </div>
+
+                        <div class="form-links text-center">
+                            <div class="d-flex flex-column gap-3">
+                                <a href="/signup" class="text-link">
+                                    <i class="fas fa-user-plus me-2"></i>
+                                    ¿No tienes cuenta? Crear cuenta
+                                </a>
+                                <a href="/forgot-password" class="text-link">
+                                    <i class="fas fa-key me-2"></i>
+                                    ¿Olvidaste la contraseña?
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section section-padding" style="background-color: var(--card-bg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-center">
+                    <h2>Tu Experiencia Musical Te Espera</h2>
+                    <p>Descubre todo lo que puedes hacer con tu cuenta</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-item text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Favoritos</h4>
+                    <p>Guarda tus vinilos favoritos y crea listas personalizadas.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-item text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h4>Carrito Rápido</h4>
+                    <p>Compra de forma segura y revisa tu historial de pedidos.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-item text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h4>Notificaciones</h4>
+                    <p>Recibe alertas de nuevos lanzamientos y ofertas exclusivas.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-item text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>Reviews</h4>
+                    <p>Comparte tus opiniones y ayuda a otros coleccionistas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Montserrat:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+:root {
+    --primary-color: #d43f20;
+    --secondary-color: #e9d07e;
+    --accent-color-1: #817d6b;
+    --accent-color-2: #006f73;
+    --accent-color-3: #615b4d;
+    --accent-color-4: #0f7064;
+    --dark-bg: #122c2b;
+    --text-color: #f8f9fa;
+    --light-text: #e9ecef;
+    --card-bg: #1a3a39;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--dark-bg);
+}
+
+/* Tipografía - IDÉNTICO A CATÁLOGO */
+h1, h2, h3, h4, .section-title h2 {
+    font-family: 'Patrick Hand SC', cursive;
+    font-weight: normal;
+}
+
+h5, h6, .section-title p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+p, span, .form-label, .form-check-label {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Login Hero Section - ESTILO COHERENTE CON CATÁLOGO */
+.login-hero-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #1a3a39 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230f7064' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--light-text);
+    font-weight: 300;
+}
+
+.hero-img img {
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border: 2px solid var(--accent-color-4);
+}
+
+/* Section Padding - IGUAL QUE CATÁLOGO */
+.section-padding {
+    padding: 80px 0;
+}
+
+/* Section Title - IGUAL QUE CATÁLOGO */
+.section-title {
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.section-title p {
+    color: var(--light-text);
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+/* Login Form Container */
+.login-form-container {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 50px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border: 1px solid var(--accent-color-4);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+/* Form Styles */
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control {
+    background: var(--dark-bg);
+    border: 1px solid var(--accent-color-4);
+    border-radius: 10px;
+    color: var(--text-color);
+    padding: 12px 45px 12px 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.form-control:focus {
+    background: var(--dark-bg);
+    border-color: var(--secondary-color);
+    color: var(--text-color);
+    box-shadow: 0 0 0 0.2rem rgba(233, 208, 126, 0.25);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: var(--accent-color-1);
+}
+
+.form-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-color-1);
+    font-size: 1rem;
+}
+
+.form-check {
+    margin-bottom: 1rem;
+}
+
+.form-check-input {
+    background-color: var(--dark-bg);
+    border: 1px solid var(--accent-color-4);
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.form-check-input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(233, 208, 126, 0.25);
+}
+
+.form-check-label {
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+.text-link {
+    color: var(--secondary-color)!important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.text-link:hover {
+    color: var(--primary-color);
+}
+
+/* Buttons -  */
+.primary-btn {
+    background-color: var(--primary-color)!important;
+    color: white;
+    border: 2px solid var(--primary-color)!important;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 63, 32, 0.4);
+}
+
+.btn-lg {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* Social Login */
+.social-login {
+    border-top: 1px solid var(--accent-color-4);
+    padding-top: 30px;
+}
+
+.divider {
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.divider span {
+    background: var(--card-bg);
+    padding: 0 15px;
+    color: var(--accent-color-1);
+    font-size: 0.9rem;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--accent-color-4);
+    z-index: -1;
+}
+
+.social-btn {
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    border: 1px solid var(--accent-color-4);
+    background: var(--dark-bg);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.google-btn:hover {
+    background: #db4437;
+    border-color: #db4437;
+    color: white;
+}
+
+.facebook-btn:hover {
+    background: #4267B2;
+    border-color: #4267B2;
+    color: white;
+}
+
+/* Alert Styles */
+.alert {
+    border-radius: 10px;
+    border: none;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+}
+
+.alert-danger {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+/* Features Section */
+.features-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.features-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(15, 112, 100, 0.1) 0%, transparent 50%);
+}
+
+.feature-item {
+    background: var(--dark-bg);
+    border-radius: 15px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border: 1px solid var(--accent-color-4);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border-color: var(--secondary-color);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color-4));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 2rem;
+    color: white;
+}
+
+.feature-item h4 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.feature-item p {
+    color: var(--light-text);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Form Links */
+.form-links .d-flex {
+    gap: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .login-form-container {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .login-hero-section {
+        padding: 60px 0;
+    }
+    
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .section-padding {
+        padding: 60px 0;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+    
+    .login-form-container {
+        padding: 30px 20px;
+    }
+    
+    .feature-item {
+        padding: 30px 20px;
+    }
+    
+    .social-buttons .col-6 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero-text {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .hero-img {
+        text-align: center;
+    }
+    
+    .form-links .d-flex {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Efectos de focus en los campos del formulario
+    const formControls = document.querySelectorAll('.form-control');
+    
+    formControls.forEach(control => {
+        control.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+            this.style.borderColor = 'var(--secondary-color)';
+        });
+        
+        control.addEventListener('blur', function() {
+            this.parentElement.classList.remove('focused');
+            if (this.value === '') {
+                this.style.borderColor = 'var(--accent-color-4)';
+            }
+        });
+    });
+    
+    // Animación suave al enviar el formulario
+    const form = document.querySelector('.login');
+    form.addEventListener('submit', function(e) {
+        const submitBtn = this.querySelector('.primary-btn');
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Iniciando sesión...';
+        submitBtn.disabled = true;
+    });
+    
+    // Simulación de login social (solo para demostración)
+    const socialButtons = document.querySelectorAll('.social-btn');
+    socialButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Conectando...';
+            this.disabled = true;
+            
+            // Simular proceso de autenticación
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+                alert('Funcionalidad de login social en desarrollo');
+            }, 2000);
+        });
+    });
+    
+    // Mostrar/ocultar contraseña (opcional)
+    const passwordInput = document.getElementById('password');
+    const passwordIcon = document.querySelector('#password + .form-icon');
+    
+    if (passwordIcon) {
+        passwordIcon.style.cursor = 'pointer';
+        passwordIcon.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-lock');
+            this.classList.toggle('fa-lock-open');
+        });
+    }
+});
+</script>
+{% endblock %}

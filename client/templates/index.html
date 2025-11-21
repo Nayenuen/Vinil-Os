@@ -1,0 +1,1240 @@
+{% extends "navbar.html" %}
+
+{% block title %}Inicio - Vinil'os{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1>Somos tu destino online para encontrar vinilos</h1>
+                    <p>Desde los clásicos atemporales que definieron generaciones hasta los lanzamientos más frescos e imprescindibles del panorama actual.</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-img">
+                    <img src="https://lh3.googleusercontent.com/d/1qAPexs5i3ZCRBzK_6V92HGdy48cEyv_0" alt="Vinilos" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="categories-section section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-center">
+                    <h2>Categorías</h2>
+                    <p>Explora por género musical</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <a href="/catalogo?categoria=rock" class="category-link">
+                    <div class="category-item">
+                        <div class="category-img">
+                            <img src="https://lh3.googleusercontent.com/d/1KnG47E9Slhud7Q9RdDr3uE43nRa2eFZH" alt="Rock">
+                        </div>
+                        <div class="category-content">
+                            <h4>Rock</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="/catalogo?categoria=jazz" class="category-link">
+                    <div class="category-item">
+                        <div class="category-img">
+                            <img src="https://lh3.googleusercontent.com/d/1JEglJA_gSIXhYjpzzpsaDfTD5xEbQXkD" alt="Jazz">
+                        </div>
+                        <div class="category-content">
+                            <h4>Jazz</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="/catalogo?categoria=electronica" class="category-link">
+                    <div class="category-item">
+                        <div class="category-img">
+                            <img src="https://lh3.googleusercontent.com/d/1DVNPolMxZ925CfiY66GVtIg69I7wdD_7" alt="Electrónica">
+                        </div>
+                        <div class="category-content">
+                            <h4>Electrónica</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="/catalogo?categoria=hiphop" class="category-link">
+                    <div class="category-item">
+                        <div class="category-img">
+                            <img src="https://lh3.googleusercontent.com/d/1jKVjUsr8yzTna9KVGEwIh_clSBf3M8ZS" alt="Hip Hop">
+                        </div>
+                        <div class="category-content">
+                            <h4>Hip Hop</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured-section section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-center">
+                    <h2>Recomendaciones</h2>
+                    <p>Descubre nuestras selecciones especiales</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Producto 24 - Heart: Dreamboat Annie -->
+            <div class="col-lg-3 col-md-6">
+                <div class="single-product">
+                    <div class="product-img">
+                        <img src="https://lh3.googleusercontent.com/d/1pe7sSdGytBkVzC0fr69Ylof56eFrjQae" alt="Heart - Dreamboat Annie">
+                        <div class="product-action">
+                            <a href="/carrito" class="btn add-to-cart-btn" data-id="24" data-stock="5" data-name="Dreamboat Annie" data-artist="Heart" data-genre="Rock / Folk Rock" data-price="750" data-image="/static/images/product-24.jpg">
+                                <i class="fas fa-shopping-cart"></i> Añadir a Carrito
+                            </a>
+                            <button class="btn preview-btn" data-id="24">
+                                <i class="fas fa-eye"></i> Vista Previa
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h6>Dreamboat Annie</h6>
+                        <p class="artist">Heart</p>
+                        <div class="price">
+                            <h6>$750 MXN</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 25 - David Bowie: The Rise and Fall of Ziggy Stardust -->
+            <div class="col-lg-3 col-md-6">
+                <div class="single-product">
+                    <div class="product-img">
+                        <img src="https://lh3.googleusercontent.com/d/1qfXkSfl9w51BwBwOHYQaINL-NsweQTS_" alt="David Bowie - The Rise and Fall of Ziggy Stardust">
+                        <div class="product-action">
+                            <a href="/carrito" class="btn add-to-cart-btn" data-id="25" data-stock="3" data-name="The Rise and Fall of Ziggy Stardust" data-artist="David Bowie" data-genre="Glam Rock" data-price="950" data-image="/static/images/product-25.jpg">
+                                <i class="fas fa-shopping-cart"></i> Añadir a Carrito
+                            </a>
+                            <button class="btn preview-btn" data-id="25">
+                                <i class="fas fa-eye"></i> Vista Previa
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h6>The Rise and Fall of Ziggy Stardust</h6>
+                        <p class="artist">David Bowie</p>
+                        <div class="price">
+                            <h6>$950 MXN</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 26 - Electric Light Orchestra: Out of the Blue -->
+            <div class="col-lg-3 col-md-6">
+                <div class="single-product">
+                    <div class="product-img">
+                        <img src="https://lh3.googleusercontent.com/d/1DVNPolMxZ925CfiY66GVtIg69I7wdD_7" alt="Electric Light Orchestra - Out of the Blue">
+                        <div class="product-action">
+                            <a href="/carrito" class="btn add-to-cart-btn" data-id="26" data-stock="7" data-name="Out of the Blue" data-artist="Electric Light Orchestra" data-genre="Rock sinfónico / Pop Rock" data-price="900" data-image="/static/images/product-26.jpg">
+                                <i class="fas fa-shopping-cart"></i> Añadir a Carrito
+                            </a>
+                            <button class="btn preview-btn" data-id="26">
+                                <i class="fas fa-eye"></i> Vista Previa
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h6>Out of the Blue</h6>
+                        <p class="artist">Electric Light Orchestra</p>
+                        <div class="price">
+                            <h6>$900 MXN</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 27 - Caifanes: El Silencio -->
+            <div class="col-lg-3 col-md-6">
+                <div class="single-product">
+                    <div class="product-img">
+                        <img src="https://lh3.googleusercontent.com/d/1vTe96Lry-06iMl3UbmVRR0_1jFwOjKkQ" alt="Caifanes - El Silencio">
+                        <div class="product-action">
+                            <a href="/carrito" class="btn add-to-cart-btn" data-id="27" data-stock="4" data-name="El Silencio" data-artist="Caifanes" data-genre="Rock alternativo / Rock mexicano" data-price="840" data-image="/static/images/product-27.jpg">
+                                <i class="fas fa-shopping-cart"></i> Añadir a Carrito
+                            </a>
+                            <button class="btn preview-btn" data-id="27">
+                                <i class="fas fa-eye"></i> Vista Previa
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h6>El Silencio</h6>
+                        <p class="artist">Caifanes</p>
+                        <div class="price">
+                            <h6>$840 MXN</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center mt-4">
+                <a href="/catalogo" class="primary-btn">Ver Todo el Catálogo</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials-section section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-center">
+                    <h2>Lo que dicen nuestros clientes</h2>
+                    <p>Experiencias reales de amantes de la música</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"La calidad de los vinilos es excepcional. Envío rápido y embalaje perfecto. ¡Volveré a comprar!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h5>María González</h5>
+                        <span>Coleccionista</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"Encontré ediciones limitadas que no había podido conseguir en ningún otro sitio. Gran selección."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h5>Carlos Rodríguez</h5>
+                        <span>DJ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"El sonido es increíble, se nota que cuidan cada detalle. Recomendado 100%."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h5>Ana Martínez</h5>
+                        <span>Audiófila</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-content">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2>Suscríbete a nuestro boletín</h2>
+                    <p>Recibe las últimas novedades y ofertas exclusivas</p>
+                </div>
+                <div class="col-lg-6">
+                    <form action="#" class="newsletter-form">
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button type="submit">Suscribirse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer-section">
+    <div class="container">
+        <div class="footer-content">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer-logo">
+                        <h3>Vinil'os</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-menu">
+                        <ul>
+                            <li><a href="/aviso-legal">Aviso Legal</a></li>
+                            <li><a href="/politica-privacidad">Política de Privacidad</a></li>
+                            <li><a href="/terminos-condiciones">Términos y Condiciones</a></li>
+                            <li><a href="/cookies">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer-copyright">
+                        <p>© 2025 Vinil'os. Todos los derechos reservados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Modal para vista previa de productos -->
+<div class="modal fade" id="productPreviewModal" tabindex="-1" aria-labelledby="productPreviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content custom-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productPreviewModalLabel">Vinilo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img id="previewImage" src="" alt="Producto" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-6">
+                        <h4 id="previewTitle"></h4>
+                        <p class="artist" id="previewArtist"></p>
+                        <p class="genre" id="previewGenre"></p>
+                        <p class="price" id="previewPrice"></p>
+                        <p class="description" id="previewDescription"></p>
+                        <div class="mt-4">
+                            <a href="#" class="btn primary-btn add-to-cart-from-preview">Añadir al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-labelledby="loginRequiredModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content custom-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginRequiredModalLabel">Inicio de Sesión Requerido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="fas fa-user-lock modal-icon" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                <p>Debes iniciar sesión para agregar productos al carrito.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a href="/login" class="btn primary-btn">Iniciar Sesión</a>
+                <a href="/signup" class="btn secondary-btn">Registrarse</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cart-toast">
+    <i class="fas fa-check-circle"></i>
+    <span>Producto añadido al carrito</span>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Montserrat:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary-color: #d43f20;
+    --secondary-color: #e9d07e;
+    --accent-color-1: #817d6b;
+    --accent-color-2: #006f73;
+    --accent-color-3: #615b4d;
+    --accent-color-4: #0f7064;
+    --dark-bg: #122c2b;
+    --text-color: #f8f9fa;
+    --light-text: #e9ecef;
+    --card-bg: #1a3a39;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--dark-bg);
+}
+
+/* Tipografía */
+h1, h2, h3, h4, .section-title h2, .footer-logo h3 {
+    font-family: 'Patrick Hand SC', cursive;
+    font-weight: normal;
+}
+
+h5, h6, .section-title p, .testimonial-author h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+p, span, .product-details h6, .price h6, .footer-menu a, .footer-copyright p {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #1a3a39 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230f7064' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--light-text);
+    font-weight: 300;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 15px;
+}
+
+.primary-btn, .secondary-btn {
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: 2px solid var(--primary-color);
+}
+
+.primary-btn:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 63, 32, 0.4);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.secondary-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--dark-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(233, 208, 126, 0.4);
+}
+
+.hero-img img {
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border: 2px solid var(--accent-color-4);
+}
+
+/* Section Padding */
+.section-padding {
+    padding: 80px 0;
+}
+
+/* Section Title */
+.section-title {
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.section-title p {
+    color: var(--light-text);
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+/* Categories - Animación Hover Mejorada */
+.categories-section {
+    background-color: var(--card-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.categories-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(15, 112, 100, 0.1) 0%, transparent 50%);
+}
+
+.category-link {
+    text-decoration: none;
+    display: block;
+}
+
+.category-item {
+    background: var(--dark-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+    border: 1px solid var(--accent-color-4);
+    height: 100%;
+    position: relative;
+}
+
+.category-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.category-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(233, 208, 126, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.category-item:hover::before {
+    opacity: 1;
+}
+
+.category-img {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.category-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.category-item:hover .category-img img {
+    transform: scale(1.1);
+}
+
+.category-content {
+    padding: 25px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.category-content h4 {
+    font-weight: 600;
+    margin-bottom: 0;
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+.category-item:hover .category-content h4 {
+    color: var(--primary-color);
+}
+
+/* Products */
+.featured-section {
+    background-color: var(--dark-bg);
+}
+
+.single-product {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+    border: 1px solid var(--accent-color-4);
+}
+
+.single-product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border-color: var(--secondary-color);
+}
+
+.product-img {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-img img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.single-product:hover .product-img img {
+    transform: scale(1.1);
+}
+
+.product-action {
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    padding: 0 10px;
+}
+
+.single-product:hover .product-action {
+    bottom: 20px;
+}
+
+.product-action .btn {
+    width: 100%;
+    max-width: 180px;
+    padding: 10px 15px;
+    border-radius: 30px;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
+    font-size: 0.85rem;
+}
+
+.product-action .preview-btn {
+    background: var(--accent-color-2);
+    border-color: var(--accent-color-2);
+}
+
+.product-action .btn:hover {
+    background: white;
+    color: var(--primary-color);
+    transform: scale(1.05);
+    border-color: white;
+}
+
+.product-action .preview-btn:hover {
+    background: white;
+    color: var(--accent-color-2);
+    border-color: white;
+}
+
+.product-details {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-details h6 {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: var(--light-text);
+    font-size: 1rem;
+}
+
+.product-details .artist {
+    color: var(--accent-color-1);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.price h6 {
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Testimonials */
+.testimonials-section {
+    background-color: var(--card-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(15, 112, 100, 0.1) 0%, transparent 50%);
+}
+
+.testimonial-item {
+    background: var(--dark-bg);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--accent-color-4);
+    position: relative;
+}
+
+.testimonial-item::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 4rem;
+    color: var(--accent-color-4);
+    opacity: 0.3;
+    font-family: 'Patrick Hand SC', cursive;
+    line-height: 1;
+}
+
+.testimonial-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    border-color: var(--secondary-color);
+}
+
+.testimonial-content {
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-content p {
+    font-style: italic;
+    color: var(--light-text);
+    font-weight: 300;
+}
+
+.testimonial-author h5 {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+}
+
+.testimonial-author span {
+    color: var(--accent-color-1);
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+/* Newsletter */
+.newsletter-section {
+    padding: 60px 0;
+    background-color: var(--accent-color-2);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(233, 208, 126, 0.1) 0%, transparent 50%);
+}
+
+.newsletter-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+    font-family: 'Patrick Hand SC', cursive;
+}
+
+.newsletter-content p {
+    color: var(--light-text);
+    font-weight: 300;
+}
+
+.newsletter-form {
+    display: flex;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px 0 0 30px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.9);
+    font-family: 'Outfit', sans-serif;
+}
+
+.newsletter-form button {
+    padding: 12px 30px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 30px 30px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.newsletter-form button:hover {
+    background: #b5341a;
+}
+
+/* Footer */
+.footer-section {
+    padding: 50px 0 20px;
+    background-color: var(--accent-color-3);
+    color: white;
+    position: relative;
+}
+
+.footer-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(233, 208, 126, 0.05) 0%, transparent 50%);
+}
+
+.footer-logo h3 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.footer-menu ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+}
+
+.footer-menu ul li {
+    margin: 0 15px;
+}
+
+.footer-menu ul li a {
+    color: var(--light-text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 300;
+}
+
+.footer-menu ul li a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-copyright p {
+    margin: 0;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+}
+
+/* Modal Styles */
+.custom-modal {
+    background: var(--card-bg);
+    border: 1px solid var(--accent-color-4);
+    border-radius: 15px;
+    color: var(--text-color);
+}
+
+.custom-modal .modal-header {
+    border-bottom: 1px solid var(--accent-color-4);
+}
+
+.custom-modal .modal-title {
+    color: var(--secondary-color);
+    font-family: 'Patrick Hand SC', cursive;
+}
+
+.custom-modal .btn-close {
+    filter: invert(1);
+}
+
+.custom-modal .modal-body .artist {
+    color: var(--accent-color-1);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.custom-modal .modal-body .genre {
+    color: var(--light-text);
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.custom-modal .modal-body .price {
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.custom-modal .modal-body .description {
+    color: var(--light-text);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Toast Notification */
+.cart-toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--accent-color-4);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1050;
+    display: none;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-toast.show {
+    display: flex;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .newsletter-form {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-section {
+        padding: 60px 0;
+    }
+    
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-btns {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .primary-btn, .secondary-btn {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .footer-menu ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-menu ul li {
+        margin: 5px 0;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .newsletter-form input {
+        border-radius: 30px;
+        margin-bottom: 10px;
+    }
+    
+    .newsletter-form button {
+        border-radius: 30px;
+        width: 100%;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+    
+    .product-action {
+        bottom: -90px;
+    }
+    
+    .product-action .btn {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar carrito si no existe
+    if (!localStorage.getItem('vinilos_cart')) {
+        localStorage.setItem('vinilos_cart', JSON.stringify([]));
+    }
+    
+    // Actualizar contador del carrito en el navbar
+    updateCartCount();
+
+    // Add to cart functionality
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+    const loginModal = new bootstrap.Modal(document.getElementById('loginRequiredModal'));
+    const cartToast = document.querySelector('.cart-toast');
+    
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault(); // Evita la redirección inmediata por defecto del <a>
+            
+            const productId = this.getAttribute('data-id');
+            const productData = {
+                id: productId,
+                name: this.getAttribute('data-name'),
+                artist: this.getAttribute('data-artist'),
+                genre: this.getAttribute('data-genre'),
+                price: parseFloat(this.getAttribute('data-price')),
+                image: this.getAttribute('data-image'),
+                quantity: 1
+            };
+            
+            // Verificar si el usuario está logueado
+            const isLoggedIn = {% if session.get('logged_in') %}true{% else %}false{% endif %};
+            
+            if (!isLoggedIn) {
+                // Si no está logueado, redirige a carrito.html o muestra modal
+                // Para este caso, mostraremos el modal para forzar el login antes de añadir
+                loginModal.show();
+                return;
+            }
+            
+            // Si está logueado, se ejecuta la función de añadir al carrito
+            addToCart(productData);
+            
+            // Mostrar toast de confirmación
+            cartToast.classList.add('show');
+            setTimeout(() => {
+                cartToast.classList.remove('show');
+            }, 3000);
+        });
+    });
+    
+    // Función para añadir producto al carrito
+    function addToCart(productData) {
+        let cart = JSON.parse(localStorage.getItem('vinilos_cart')) || [];
+        
+        // Verificar si el producto ya está en el carrito
+        const existingItemIndex = cart.findIndex(item => item.id === productData.id);
+        
+        if (existingItemIndex !== -1) {
+            // Si ya existe, incrementar cantidad
+            cart[existingItemIndex].quantity += 1;
+        } else {
+            // Si no existe, añadir nuevo producto
+            cart.push(productData);
+        }
+        
+        localStorage.setItem('vinilos_cart', JSON.stringify(cart));
+        updateCartCount();
+        
+        console.log(`Producto ${productData.name} añadido al carrito`);
+    }
+    
+    // Actualizar contador del carrito
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('vinilos_cart')) || [];
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+    }
+    
+    // Vista previa de productos
+    const previewButtons = document.querySelectorAll('.preview-btn');
+    const previewModal = new bootstrap.Modal(document.getElementById('productPreviewModal'));
+    const addToCartFromPreview = document.querySelector('.add-to-cart-from-preview');
+    
+    // Datos de los productos para la vista previa
+    const productData = {
+        24: {
+            title: "Dreamboat Annie",
+            artist: "Heart",
+            genre: "Rock / Folk Rock",
+            price: "$750 MXN",
+            description: "Debut de Heart que mezcla baladas suaves y rock poderoso liderado por las hermanas Wilson.",
+            image: "https://lh3.googleusercontent.com/d/1pe7sSdGytBkVzC0fr69Ylof56eFrjQae"
+        },
+        25: {
+            title: "The Rise and Fall of Ziggy Stardust",
+            artist: "David Bowie",
+            genre: "Glam Rock",
+            price: "$950 MXN",
+            description: "Uno de los discos conceptuales más importantes de Bowie, narrando la historia del icónico Ziggy.",
+            image: "https://lh3.googleusercontent.com/d/1qfXkSfl9w51BwBwOHYQaINL-NsweQTS_"
+        },
+        26: {
+            title: "Out of the Blue",
+            artist: "Electric Light Orchestra",
+            genre: "Rock sinfónico / Pop Rock",
+            price: "$900 MXN",
+            description: "Doble disco emblemático de ELO lleno de arreglos sinfónicos y melodías brillantes.",
+            image: "https://lh3.googleusercontent.com/d/1DVNPolMxZ925CfiY66GVtIg69I7wdD_7"
+        },
+        27: {
+            title: "El Silencio",
+            artist: "Caifanes",
+            genre: "Rock alternativo / Rock mexicano",
+            price: "$840 MXN",
+            description: "Uno de los álbumes más influyentes del rock en español, con un sonido más maduro y experimental.",
+            image: "https://lh3.googleusercontent.com/d/1vTe96Lry-06iMl3UbmVRR0_1jFwOjKkQ"
+        }
+    };
+    
+    previewButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.getAttribute('data-id');
+            const data = productData[productId];
+            
+            if (data) {
+                document.getElementById('previewImage').src = data.image;
+                document.getElementById('previewImage').alt = data.title;
+                document.getElementById('previewTitle').textContent = data.title;
+                document.getElementById('previewArtist').textContent = data.artist;
+                document.getElementById('previewGenre').textContent = data.genre;
+                document.getElementById('previewPrice').textContent = data.price;
+                document.getElementById('previewDescription').textContent = data.description;
+                
+                // Actualizar el enlace de añadir al carrito en el modal
+                addToCartFromPreview.setAttribute('data-id', productId);
+                addToCartFromPreview.setAttribute('data-name', data.title);
+                addToCartFromPreview.setAttribute('data-artist', data.artist);
+                addToCartFromPreview.setAttribute('data-genre', data.genre);
+                addToCartFromPreview.setAttribute('data-price', data.price.replace('$', '').replace(' MXN', ''));
+                addToCartFromPreview.setAttribute('data-image', data.image);
+                
+                previewModal.show();
+            }
+        });
+    });
+    
+    // Añadir al carrito desde la vista previa
+    addToCartFromPreview.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const productId = this.getAttribute('data-id');
+        const productData = {
+            id: productId,
+            name: this.getAttribute('data-name'),
+            artist: this.getAttribute('data-artist'),
+            genre: this.getAttribute('data-genre'),
+            price: parseFloat(this.getAttribute('data-price')),
+            image: this.getAttribute('data-image'),
+            quantity: 1
+        };
+        
+        // Verificar si el usuario está logueado
+        const isLoggedIn = {% if session.get('logged_in') %}true{% else %}false{% endif %};
+        
+        if (!isLoggedIn) {
+            // Si no está logueado, mostrar modal de login
+            previewModal.hide();
+            loginModal.show();
+            return;
+        }
+        
+        // Si está logueado, añadir al carrito
+        addToCart(productData);
+        previewModal.hide();
+        
+        // Mostrar toast de confirmación
+        cartToast.classList.add('show');
+        setTimeout(() => {
+            cartToast.classList.remove('show');
+        }, 3000);
+    });
+    
+    // Simple script for newsletter form submission
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                alert('¡Gracias por suscribirte! Te hemos enviado un correo de confirmación.');
+                this.reset();
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

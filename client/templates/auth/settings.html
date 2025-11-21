@@ -1,0 +1,1179 @@
+{% extends "navbar.html" %}
+
+{% block title %}Configuraciones - Vinil'os{% endblock %}
+
+{% block content %}
+
+<!-- Settings Hero Section -->
+<section class="settings-hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1>Mi Perfil</h1>
+                    <p>Gestiona tu información personal, preferencias y configuración de cuenta.</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-img">
+                    <img src="https://lh3.googleusercontent.com/d/1tL5Lz2xXy2lTEEJELdgBrR00Xy18dIil" alt="Configuración Perfil" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Settings Section -->
+<section class="settings-section section-padding">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-3 mb-4">
+                <div class="settings-sidebar">
+                    <div class="sidebar-header">
+                        <div class="user-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h5>{{ user.nombre if user else 'Usuario' }}</h5>
+                        <p class="user-email">{{ user.email if user else 'email@ejemplo.com' }}</p>
+                    </div>
+                    <nav class="sidebar-nav">
+                        <a href="#profile" class="nav-item active" data-tab="profile">
+                            <i class="fas fa-user me-2"></i>
+                            Perfil
+                        </a>
+                        <a href="#preferences" class="nav-item" data-tab="preferences">
+                            <i class="fas fa-sliders-h me-2"></i>
+                            Preferencias
+                        </a>
+                        <a href="#notifications" class="nav-item" data-tab="notifications">
+                            <i class="fas fa-bell me-2"></i>
+                            Notificaciones
+                        </a>
+                        <a href="#privacy" class="nav-item" data-tab="privacy">
+                            <i class="fas fa-shield-alt me-2"></i>
+                            Privacidad
+                        </a>
+                        <a href="#account" class="nav-item" data-tab="account">
+                            <i class="fas fa-cog me-2"></i>
+                            Cuenta
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <!-- Success/Error Messages -->
+                {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    {{ error }}
+                </div>
+                {% endif %}
+
+                <div id="success-message" class="alert alert-success" role="alert" style="display: none;">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <span id="success-text">Cambios guardados correctamente</span>
+                </div>
+
+                <!-- Profile Tab -->
+                <div class="settings-tab active" id="profile-tab">
+                    <div class="tab-header">
+                        <h3>Información del Perfil</h3>
+                        <p>Actualiza tu información personal</p>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <form id="profile-form" class="settings-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstName" class="form-label">Nombre</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control" 
+                                               value="{{ user.nombre.split(' ')[0] if user and user.nombre else '' }}" 
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastName" class="form-label">Apellido</label>
+                                        <input type="text" id="lastName" name="lastName" class="form-control"
+                                               value="{{ user.nombre.split(' ')[1] if user and user.nombre and user.nombre.split(' ')|length > 1 else '' }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-control"
+                                       value="{{ user.email if user else '' }}" required readonly>
+                                <small class="form-text">El email no se puede modificar</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Teléfono</label>
+                                <input type="tel" id="phone" name="phone" class="form-control"
+                                       placeholder="+57 300 123 4567">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bio" class="form-label">Biografía</label>
+                                <textarea id="bio" name="bio" class="form-control" rows="4" 
+                                          placeholder="Cuéntanos sobre tus gustos musicales..."></textarea>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn primary-btn">
+                                    <i class="fas fa-save me-2"></i>
+                                    Guardar Cambios
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Preferences Tab -->
+                <div class="settings-tab" id="preferences-tab">
+                    <div class="tab-header">
+                        <h3>Preferencias Musicales</h3>
+                        <p>Personaliza tu experiencia en Vinil'os</p>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <form id="preferences-form" class="settings-form">
+                            <div class="form-group">
+                                <label class="form-label">Géneros Favoritos</label>
+                                <div class="genres-grid">
+                                    {% for genre in ['rock', 'jazz', 'electronic', 'hiphop', 'classical', 'blues', 'reggae', 'pop'] %}
+                                    <div class="genre-checkbox">
+                                        <input type="checkbox" id="genre-{{ genre }}" name="favorite_genres" value="{{ genre }}">
+                                        <label for="genre-{{ genre }}">{{ genre|title }}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="priceRange" class="form-label">Rango de Precio Preferido</label>
+                                <select id="priceRange" name="priceRange" class="form-control">
+                                    <option value="any">Cualquier precio</option>
+                                    <option value="low">Menos de $20.000</option>
+                                    <option value="medium">$20.000 - $50.000</option>
+                                    <option value="high">Más de $50.000</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Preferencias de Visualización</label>
+                                <div class="preference-options">
+                                    <div class="form-check">
+                                        <input type="checkbox" id="showStock" name="showStock" class="form-check-input" checked>
+                                        <label for="showStock" class="form-check-label">Mostrar stock disponible</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" id="darkMode" name="darkMode" class="form-check-input">
+                                        <label for="darkMode" class="form-check-label">Modo oscuro (si está disponible)</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" id="newReleases" name="newReleases" class="form-check-input" checked>
+                                        <label for="newReleases" class="form-check-label">Destacar nuevos lanzamientos</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn primary-btn">
+                                    <i class="fas fa-save me-2"></i>
+                                    Guardar Preferencias
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Notifications Tab -->
+                <div class="settings-tab" id="notifications-tab">
+                    <div class="tab-header">
+                        <h3>Configuración de Notificaciones</h3>
+                        <p>Controla cómo y cuándo recibir notificaciones</p>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <form id="notifications-form" class="settings-form">
+                            <div class="form-group">
+                                <label class="form-label">Notificaciones por Email</label>
+                                <div class="notification-options">
+                                    <div class="form-check">
+                                        <input type="checkbox" id="emailNews" name="emailNews" class="form-check-input" checked>
+                                        <label for="emailNews" class="form-check-label">Boletín de novedades</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" id="emailPromo" name="emailPromo" class="form-check-input" checked>
+                                        <label for="emailPromo" class="form-check-label">Ofertas y promociones</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" id="emailStock" name="emailStock" class="form-check-input">
+                                        <label for="emailStock" class="form-check-label">Alertas de stock</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Notificaciones en el Sitio</label>
+                                <div class="notification-options">
+                                    <div class="form-check">
+                                        <input type="checkbox" id="siteMessages" name="siteMessages" class="form-check-input" checked>
+                                        <label for="siteMessages" class="form-check-label">Mensajes del sistema</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" id="siteUpdates" name="siteUpdates" class="form-check-input" checked>
+                                        <label for="siteUpdates" class="form-check-label">Actualizaciones de pedidos</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" id="siteRecommendations" name="siteRecommendations" class="form-check-input" checked>
+                                        <label for="siteRecommendations" class="form-check-label">Recomendaciones personalizadas</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="notificationFrequency" class="form-label">Frecuencia de Notificaciones</label>
+                                <select id="notificationFrequency" name="notificationFrequency" class="form-control">
+                                    <option value="instant">Inmediatamente</option>
+                                    <option value="daily">Resumen diario</option>
+                                    <option value="weekly">Resumen semanal</option>
+                                </select>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn primary-btn">
+                                    <i class="fas fa-save me-2"></i>
+                                    Guardar Configuración
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Privacy Tab -->
+                <div class="settings-tab" id="privacy-tab">
+                    <div class="tab-header">
+                        <h3>Privacidad y Seguridad</h3>
+                        <p>Controla tu privacidad y configuración de seguridad</p>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <form id="privacy-form" class="settings-form">
+                            <div class="form-group">
+                                <label class="form-label">Visibilidad del Perfil</label>
+                                <div class="privacy-options">
+                                    <div class="form-check">
+                                        <input type="radio" id="profilePublic" name="profileVisibility" value="public" class="form-check-input" checked>
+                                        <label for="profilePublic" class="form-check-label">Público</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" id="profilePrivate" name="profileVisibility" value="private" class="form-check-input">
+                                        <label for="profilePrivate" class="form-check-label">Privado</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" id="profileFriends" name="profileVisibility" value="friends" class="form-check-input">
+                                        <label for="profileFriends" class="form-check-label">Solo amigos</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Configuración de Datos</label>
+                                <div class="privacy-options">
+                                    <div class="form-check">
+                                        <input type="checkbox" id="dataCollection" name="dataCollection" class="form-check-input" checked>
+                                        <label for="dataCollection" class="form-check-label">Permitir recolección de datos para personalización</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" id="cookies" name="cookies" class="form-check-input" checked>
+                                        <label for="cookies" class="form-check-label">Aceptar cookies</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Contraseña</label>
+                                <div class="password-actions">
+                                    <button type="button" class="btn secondary-btn" id="changePasswordBtn">
+                                        <i class="fas fa-key me-2"></i>
+                                        Cambiar Contraseña
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn primary-btn">
+                                    <i class="fas fa-save me-2"></i>
+                                    Guardar Configuración
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Account Tab -->
+                <div class="settings-tab" id="account-tab">
+                    <div class="tab-header">
+                        <h3>Configuración de Cuenta</h3>
+                        <p>Gestiona tu cuenta y datos</p>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <div class="account-info">
+                            <div class="info-item">
+                                <strong>ID de Usuario:</strong>
+                                <span>{{ user.id if user else 'N/A' }}</span>
+                            </div>
+                            <div class="info-item">
+                                <strong>Miembro desde:</strong>
+                                <span id="memberSince">Cargando...</span>
+                            </div>
+                            <div class="info-item">
+                                <strong>Última actividad:</strong>
+                                <span id="lastActivity">Cargando...</span>
+                            </div>
+                        </div>
+
+                        <div class="account-actions">
+                            <div class="action-group">
+                                <h5>Exportar Datos</h5>
+                                <p>Descarga una copia de tus datos personales</p>
+                                <button type="button" class="btn secondary-btn" id="exportDataBtn">
+                                    <i class="fas fa-download me-2"></i>
+                                    Exportar Mis Datos
+                                </button>
+                            </div>
+
+                            <div class="action-group">
+                                <h5>Eliminar Cuenta</h5>
+                                <p>Elimina permanentemente tu cuenta y todos tus datos</p>
+                                <button type="button" class="btn danger-btn" id="deleteAccountBtn">
+                                    <i class="fas fa-trash me-2"></i>
+                                    Eliminar Cuenta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Change Password Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content custom-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changePasswordModalLabel">Cambiar Contraseña</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="change-password-form">
+                    <div class="form-group">
+                        <label for="currentPassword" class="form-label">Contraseña Actual</label>
+                        <input type="password" id="currentPassword" name="currentPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword" class="form-label">Nueva Contraseña</label>
+                        <input type="password" id="newPassword" name="newPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmNewPassword" class="form-label">Confirmar Nueva Contraseña</label>
+                        <input type="password" id="confirmNewPassword" name="confirmNewPassword" class="form-control" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn secondary-btn" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn primary-btn" id="savePasswordBtn">Guardar Contraseña</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Montserrat:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+:root {
+    --primary-color: #d43f20;
+    --secondary-color: #e9d07e;
+    --accent-color-1: #817d6b;
+    --accent-color-2: #006f73;
+    --accent-color-3: #615b4d;
+    --accent-color-4: #0f7064;
+    --dark-bg: #122c2b;
+    --text-color: #f8f9fa;
+    --light-text: #e9ecef;
+    --card-bg: #1a3a39;
+    --danger-color: #dc3545;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--dark-bg);
+}
+
+/* Tipografía - IDÉNTICO A CATÁLOGO */
+h1, h2, h3, h4, .section-title h2 {
+    font-family: 'Patrick Hand SC', cursive;
+    font-weight: normal;
+}
+
+h5, h6, .section-title p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+p, span, .form-label, .form-check-label {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Settings Hero Section */
+.settings-hero-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #1a3a39 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.settings-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230f7064' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--light-text);
+    font-weight: 300;
+}
+
+.hero-img img {
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border: 2px solid var(--accent-color-4);
+}
+
+/* Section Padding */
+.section-padding {
+    padding: 80px 0;
+}
+
+/* Settings Sidebar */
+.settings-sidebar {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border: 1px solid var(--accent-color-4);
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--accent-color-4);
+}
+
+.user-avatar {
+    font-size: 4rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.sidebar-header h5 {
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.user-email {
+    color: var(--accent-color-1);
+    font-size: 0.9rem;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: var(--light-text);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    background: rgba(233, 208, 126, 0.1);
+    color: var(--secondary-color);
+}
+
+.nav-item.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Settings Tabs */
+.settings-tab {
+    display: none;
+}
+
+.settings-tab.active {
+    display: block;
+}
+
+.tab-header {
+    margin-bottom: 30px;
+}
+
+.tab-header h3 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.tab-header p {
+    color: var(--light-text);
+    margin: 0;
+}
+
+/* Settings Card */
+.settings-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border: 1px solid var(--accent-color-4);
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control {
+    background: var(--dark-bg);
+    border: 1px solid var(--accent-color-4);
+    border-radius: 10px;
+    color: var(--text-color);
+    padding: 12px 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.form-control:focus {
+    background: var(--dark-bg);
+    border-color: var(--secondary-color);
+    color: var(--text-color);
+    box-shadow: 0 0 0 0.2rem rgba(233, 208, 126, 0.25);
+    outline: none;
+}
+
+.form-control:read-only {
+    background: var(--accent-color-3);
+    cursor: not-allowed;
+}
+
+.form-text {
+    color: var(--accent-color-1);
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+/* Checkbox and Radio Styles */
+.form-check {
+    margin-bottom: 10px;
+}
+
+.form-check-input {
+    background-color: var(--dark-bg);
+    border: 1px solid var(--accent-color-4);
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.form-check-input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(233, 208, 126, 0.25);
+}
+
+.form-check-label {
+    color: var(--light-text);
+    font-size: 0.95rem;
+}
+
+/* Genres Grid */
+.genres-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.genre-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.genre-checkbox input[type="checkbox"] {
+    margin: 0;
+}
+
+.genre-checkbox label {
+    color: var(--light-text);
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 0;
+}
+
+/* Buttons */
+.primary-btn {
+    background-color: var(--primary-color)!important;
+    color: white;
+    border: 2px solid var(--primary-color);
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 63, 32, 0.4);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--secondary-color)!important;
+    border: 2px solid var(--secondary-color);
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+
+.secondary-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--dark-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(233, 208, 126, 0.4);
+}
+
+.danger-btn {
+    background-color: transparent;
+    color: var(--danger-color)!important;
+    border: 2px solid var(--danger-color);
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+
+.danger-btn:hover {
+    background-color: var(--danger-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+}
+
+/* Form Actions */
+.form-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--accent-color-4);
+}
+
+/* Account Info */
+.account-info {
+    margin-bottom: 30px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--accent-color-4);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item strong {
+    color: var(--secondary-color);
+    min-width: 150px;
+}
+
+.info-item span {
+    color: var(--light-text);
+}
+
+/* Account Actions */
+.account-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.action-group {
+    padding: 20px;
+    background: var(--dark-bg);
+    border-radius: 10px;
+    border: 1px solid var(--accent-color-4);
+}
+
+.action-group h5 {
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.action-group p {
+    color: var(--light-text);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+/* Alert Styles */
+.alert {
+    border-radius: 10px;
+    border: none;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+}
+
+.alert-danger {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.alert-success {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+/* Modal Styles */
+.custom-modal {
+    background: var(--card-bg);
+    border: 1px solid var(--accent-color-4);
+    border-radius: 15px;
+    color: var(--text-color);
+}
+
+.custom-modal .modal-header {
+    border-bottom: 1px solid var(--accent-color-4);
+}
+
+.custom-modal .modal-title {
+    color: var(--secondary-color);
+    font-family: 'Patrick Hand SC', cursive;
+}
+
+.custom-modal .btn-close {
+    filter: invert(1);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .settings-sidebar {
+        position: static;
+        margin-bottom: 30px;
+    }
+    
+    .settings-card {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .settings-hero-section {
+        padding: 60px 0;
+    }
+    
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .section-padding {
+        padding: 60px 0;
+    }
+    
+    .settings-card {
+        padding: 20px;
+    }
+    
+    .genres-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    
+    .info-item {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero-text {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .hero-img {
+        text-align: center;
+    }
+    
+    .account-actions {
+        gap: 20px;
+    }
+    
+    .action-group {
+        padding: 15px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Sistema de pestañas
+    const navItems = document.querySelectorAll('.nav-item');
+    const tabs = document.querySelectorAll('.settings-tab');
+    
+    navItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remover clase activa de todos los elementos
+            navItems.forEach(nav => nav.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Añadir clase activa al elemento clickeado
+            this.classList.add('active');
+            
+            // Mostrar la pestaña correspondiente
+            const tabId = this.getAttribute('data-tab') + '-tab';
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+    
+    // Cargar datos guardados del usuario
+    loadUserSettings();
+    
+    // Manejar envío de formularios
+    const forms = document.querySelectorAll('.settings-form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            saveFormData(this);
+        });
+    });
+    
+    // Botón cambiar contraseña
+    const changePasswordBtn = document.getElementById('changePasswordBtn');
+    const changePasswordModal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
+    const savePasswordBtn = document.getElementById('savePasswordBtn');
+    
+    if (changePasswordBtn) {
+        changePasswordBtn.addEventListener('click', function() {
+            changePasswordModal.show();
+        });
+    }
+    
+    if (savePasswordBtn) {
+        savePasswordBtn.addEventListener('click', function() {
+            changePassword();
+        });
+    }
+    
+    // Botón exportar datos
+    const exportDataBtn = document.getElementById('exportDataBtn');
+    if (exportDataBtn) {
+        exportDataBtn.addEventListener('click', exportUserData);
+    }
+    
+    // Botón eliminar cuenta
+    const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+    if (deleteAccountBtn) {
+        deleteAccountBtn.addEventListener('click', deleteAccount);
+    }
+    
+    // Funciones de utilidad
+    function loadUserSettings() {
+        // Cargar datos del perfil
+        const profileData = JSON.parse(localStorage.getItem('userProfile')) || {};
+        if (profileData.firstName) {
+            document.getElementById('firstName').value = profileData.firstName;
+        }
+        if (profileData.lastName) {
+            document.getElementById('lastName').value = profileData.lastName;
+        }
+        if (profileData.phone) {
+            document.getElementById('phone').value = profileData.phone;
+        }
+        if (profileData.bio) {
+            document.getElementById('bio').value = profileData.bio;
+        }
+        
+        // Cargar preferencias
+        const preferences = JSON.parse(localStorage.getItem('userPreferences')) || {};
+        if (preferences.favoriteGenres) {
+            preferences.favoriteGenres.forEach(genre => {
+                const checkbox = document.getElementById(`genre-${genre}`);
+                if (checkbox) checkbox.checked = true;
+            });
+        }
+        if (preferences.priceRange) {
+            document.getElementById('priceRange').value = preferences.priceRange;
+        }
+        if (preferences.showStock !== undefined) {
+            document.getElementById('showStock').checked = preferences.showStock;
+        }
+        if (preferences.darkMode !== undefined) {
+            document.getElementById('darkMode').checked = preferences.darkMode;
+        }
+        if (preferences.newReleases !== undefined) {
+            document.getElementById('newReleases').checked = preferences.newReleases;
+        }
+        
+        // Cargar notificaciones
+        const notifications = JSON.parse(localStorage.getItem('userNotifications')) || {};
+        if (notifications.emailNews !== undefined) {
+            document.getElementById('emailNews').checked = notifications.emailNews;
+        }
+        if (notifications.emailPromo !== undefined) {
+            document.getElementById('emailPromo').checked = notifications.emailPromo;
+        }
+        if (notifications.emailStock !== undefined) {
+            document.getElementById('emailStock').checked = notifications.emailStock;
+        }
+        if (notifications.siteMessages !== undefined) {
+            document.getElementById('siteMessages').checked = notifications.siteMessages;
+        }
+        if (notifications.siteUpdates !== undefined) {
+            document.getElementById('siteUpdates').checked = notifications.siteUpdates;
+        }
+        if (notifications.siteRecommendations !== undefined) {
+            document.getElementById('siteRecommendations').checked = notifications.siteRecommendations;
+        }
+        if (notifications.notificationFrequency) {
+            document.getElementById('notificationFrequency').value = notifications.notificationFrequency;
+        }
+        
+        // Cargar privacidad
+        const privacy = JSON.parse(localStorage.getItem('userPrivacy')) || {};
+        if (privacy.profileVisibility) {
+            document.querySelector(`input[name="profileVisibility"][value="${privacy.profileVisibility}"]`).checked = true;
+        }
+        if (privacy.dataCollection !== undefined) {
+            document.getElementById('dataCollection').checked = privacy.dataCollection;
+        }
+        if (privacy.cookies !== undefined) {
+            document.getElementById('cookies').checked = privacy.cookies;
+        }
+        
+        // Actualizar información de cuenta
+        updateAccountInfo();
+    }
+    
+    function saveFormData(form) {
+        const formId = form.id;
+        let data = {};
+        
+        switch(formId) {
+            case 'profile-form':
+                data = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    phone: document.getElementById('phone').value,
+                    bio: document.getElementById('bio').value
+                };
+                localStorage.setItem('userProfile', JSON.stringify(data));
+                break;
+                
+            case 'preferences-form':
+                const favoriteGenres = Array.from(document.querySelectorAll('input[name="favorite_genres"]:checked'))
+                    .map(checkbox => checkbox.value);
+                data = {
+                    favoriteGenres: favoriteGenres,
+                    priceRange: document.getElementById('priceRange').value,
+                    showStock: document.getElementById('showStock').checked,
+                    darkMode: document.getElementById('darkMode').checked,
+                    newReleases: document.getElementById('newReleases').checked
+                };
+                localStorage.setItem('userPreferences', JSON.stringify(data));
+                break;
+                
+            case 'notifications-form':
+                data = {
+                    emailNews: document.getElementById('emailNews').checked,
+                    emailPromo: document.getElementById('emailPromo').checked,
+                    emailStock: document.getElementById('emailStock').checked,
+                    siteMessages: document.getElementById('siteMessages').checked,
+                    siteUpdates: document.getElementById('siteUpdates').checked,
+                    siteRecommendations: document.getElementById('siteRecommendations').checked,
+                    notificationFrequency: document.getElementById('notificationFrequency').value
+                };
+                localStorage.setItem('userNotifications', JSON.stringify(data));
+                break;
+                
+            case 'privacy-form':
+                const profileVisibility = document.querySelector('input[name="profileVisibility"]:checked').value;
+                data = {
+                    profileVisibility: profileVisibility,
+                    dataCollection: document.getElementById('dataCollection').checked,
+                    cookies: document.getElementById('cookies').checked
+                };
+                localStorage.setItem('userPrivacy', JSON.stringify(data));
+                break;
+        }
+        
+        showSuccessMessage('Cambios guardados correctamente');
+    }
+    
+    function changePassword() {
+        const currentPassword = document.getElementById('currentPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+        
+        if (!currentPassword || !newPassword || !confirmNewPassword) {
+            alert('Por favor, completa todos los campos');
+            return;
+        }
+        
+        if (newPassword !== confirmNewPassword) {
+            alert('Las nuevas contraseñas no coinciden');
+            return;
+        }
+        
+        // Simular cambio de contraseña
+        setTimeout(() => {
+            changePasswordModal.hide();
+            document.getElementById('change-password-form').reset();
+            showSuccessMessage('Contraseña cambiada correctamente');
+        }, 1000);
+    }
+    
+    function exportUserData() {
+        const userData = {
+            profile: JSON.parse(localStorage.getItem('userProfile')) || {},
+            preferences: JSON.parse(localStorage.getItem('userPreferences')) || {},
+            notifications: JSON.parse(localStorage.getItem('userNotifications')) || {},
+            privacy: JSON.parse(localStorage.getItem('userPrivacy')) || {},
+            exportDate: new Date().toISOString()
+        };
+        
+        const dataStr = JSON.stringify(userData, null, 2);
+        const dataBlob = new Blob([dataStr], {type: 'application/json'});
+        
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(dataBlob);
+        link.download = `vinilos-user-data-${new Date().toISOString().split('T')[0]}.json`;
+        link.click();
+        
+        showSuccessMessage('Datos exportados correctamente');
+    }
+    
+    function deleteAccount() {
+        if (confirm('¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')) {
+            if (confirm('¡ATENCIÓN! Esto eliminará todos tus datos permanentemente. ¿Continuar?')) {
+                // Simular eliminación de cuenta
+                setTimeout(() => {
+                    localStorage.removeItem('userProfile');
+                    localStorage.removeItem('userPreferences');
+                    localStorage.removeItem('userNotifications');
+                    localStorage.removeItem('userPrivacy');
+                    showSuccessMessage('Cuenta eliminada correctamente');
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 2000);
+                }, 1500);
+            }
+        }
+    }
+    
+    function updateAccountInfo() {
+        const memberSince = localStorage.getItem('accountCreated') || new Date().toISOString();
+        const lastActivity = new Date().toISOString();
+        
+        // Guardar fecha de creación si no existe
+        if (!localStorage.getItem('accountCreated')) {
+            localStorage.setItem('accountCreated', memberSince);
+        }
+        
+        // Actualizar última actividad
+        localStorage.setItem('lastActivity', lastActivity);
+        
+        // Mostrar en la interfaz
+        document.getElementById('memberSince').textContent = new Date(memberSince).toLocaleDateString('es-ES');
+        document.getElementById('lastActivity').textContent = new Date(lastActivity).toLocaleString('es-ES');
+    }
+    
+    function showSuccessMessage(message) {
+        const successMessage = document.getElementById('success-message');
+        const successText = document.getElementById('success-text');
+        
+        successText.textContent = message;
+        successMessage.style.display = 'block';
+        
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 5000);
+    }
+});
+</script>
+{% endblock %}

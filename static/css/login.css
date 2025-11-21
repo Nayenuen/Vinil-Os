@@ -1,0 +1,14 @@
+article.content-form{
+    display: fixed;
+    width: 500px;
+    padding: 0 50px 0 50px;
+    justify-content: center;
+}
+
+
+.content-form .submit {
+    padding: 5px 15px 5px 15px;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+}

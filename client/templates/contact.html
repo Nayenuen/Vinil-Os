@@ -1,0 +1,798 @@
+{% extends "navbar.html" %}
+
+{% block title %}Contacto - Vinil'os{% endblock %}
+
+{% block content %}
+
+<!-- Contact Hero Section -->
+<section class="contact-hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="contact-hero-content text-center">
+                    <h1>¡Contáctanos!</h1>
+                    <p class="lead">Estamos aquí para ayudarte con cualquier consulta sobre tus vinilos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="contact-form-section section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="contact-form-wrapper">
+                    <!-- Mensaje de éxito -->
+                    {% if success %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <strong>¡Mensaje enviado con éxito!</strong> Te contactaremos pronto.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+
+                    <!-- Mensaje de éxito para JavaScript -->
+                    <div id="success-message" class="alert alert-success alert-dismissible fade show d-none" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <strong>¡Mensaje enviado con éxito!</strong> Te contactaremos pronto.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    
+                    <form class="contact-form" action="/contact" method="POST" novalidate>
+                        <div class="form-group mb-4">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                id="nombre" 
+                                name="nombre"
+                                placeholder="Tu nombre completo"
+                                autofocus
+                                aria-label="Nombre"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group mb-4">
+                            <label for="email" class="form-label">Correo</label>
+                            <input 
+                                type="email" 
+                                class="form-control"
+                                id="email" 
+                                name="email"
+                                placeholder="tu.correo@ejemplo.com"
+                                required
+                                aria-label="Email"
+                            >
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="mensaje" class="form-label">Mensaje</label>
+                            <textarea 
+                                class="form-control"
+                                id="mensaje" 
+                                name="mensaje" 
+                                rows="6"
+                                placeholder="Escribe tu mensaje aquí..."
+                                required
+                            ></textarea>
+                        </div>
+                        
+                        <div class="form-actions text-center">
+                            <button type="submit" class="btn submit-btn">
+                                <i class="bi bi-send me-2"></i>Enviar Mensaje
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Info Section -->
+<section class="contact-info-section section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+               <div class="contact-info-card text-center">
+                    <div class="contact-icon">
+                        <i class="bi bi-instagram"></i>
+                    </div>
+                    <h4>Instagram</h4>
+                    <p>"@Vinil0s"<br></p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="contact-info-card text-center">
+                    <div class="contact-icon">
+                        <i class="bi bi-whatsapp"></i>
+                    </div>
+                    <h4>Whatsapp</h4>
+                    <p>+52 656 911 23 45<br></p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="contact-info-card text-center">
+                    <div class="contact-icon">
+                        <i class="bi bi-envelope"></i>
+                    </div>
+                    <h4>Email</h4>
+                    <p>soporte@vinil-os.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-center">
+                    <h2>Preguntas Frecuentes</h2>
+                    <p>Respuestas rápidas a tus dudas más comunes</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="accordion" id="faqAccordion">
+                    <!-- FAQ Item 1 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                ¿Cómo realizo un pedido?
+                            </button>
+                        </h2>
+                        <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Navega por nuestro catálogo, selecciona los vinilos que deseas y añádelos al carrito. Una vez en el carrito, procede al checkout y completa tus datos de envío y pago.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 2 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                ¿Cuál es el tiempo de entrega?
+                            </button>
+                        </h2>
+                        <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Los pedidos nacionales suelen entregarse en 3-5 días laborables. Para envíos internacionales, el tiempo puede variar entre 7-14 días laborables dependiendo del destino.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 3 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                ¿Aceptan devoluciones?
+                            </button>
+                        </h2>
+                        <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Sí, aceptamos devoluciones dentro de los 14 días posteriores a la recepción del pedido. El producto debe estar en perfectas condiciones y en su embalaje original.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 4 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                ¿Los vinilos son nuevos o de segunda mano?
+                            </button>
+                        </h2>
+                        <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Trabajamos tanto con vinilos nuevos como con ediciones de coleccionista en excelente estado. Cada producto indica claramente su condición en la descripción.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 5 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq5">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                ¿Hacen envíos internacionales?
+                            </button>
+                        </h2>
+                        <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Sí, realizamos envíos a todo el mundo. Los costes y tiempos de entrega varían según el destino. Puedes consultar los detalles durante el proceso de compra.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="footer-content">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer-logo">
+                        <h3>Vinil'os</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-menu">
+                        <ul>
+                            <li><a href="/aviso-legal">Aviso Legal</a></li>
+                            <li><a href="/politica-privacidad">Política de Privacidad</a></li>
+                            <li><a href="/terminos-condiciones">Términos y Condiciones</a></li>
+                            <li><a href="/cookies">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 Vinil'os. Todos los derechos reservados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Montserrat:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary-color: #d43f20;
+    --secondary-color: #e9d07e;
+    --accent-color-1: #817d6b;
+    --accent-color-2: #006f73;
+    --accent-color-3: #615b4d;
+    --accent-color-4: #0f7064;
+    --dark-bg: #122c2b;
+    --text-color: #f8f9fa;
+    --light-text: #e9ecef;
+    --card-bg: #1a3a39;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--dark-bg);
+}
+
+/* Tipografía */
+h1, h2, h3, h4, .section-title h2, .footer-logo h3, .contact-hero-content h1 {
+    font-family: 'Patrick Hand SC', cursive;
+    font-weight: normal;
+}
+
+h5, h6, .section-title p, .contact-info-card h4, .accordion-button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+p, span, .form-label, .contact-info-card p, .accordion-body, .footer-menu a, .footer-copyright p, .contact-hero-content .lead {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Alert Styles */
+.alert {
+    border-radius: 10px;
+    border: none;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    font-family: 'Outfit', sans-serif;
+    animation: slideInDown 0.5s ease-out;
+}
+
+.alert-success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #d4edda;
+    border-left: 4px solid #28a745;
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #f8d7da;
+    border-left: 4px solid #dc3545;
+}
+
+.alert .btn-close {
+    padding: 0.75rem;
+}
+
+.bi-check-circle-fill {
+    color: #28a745;
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Contact Hero Section */
+.contact-hero-section {
+    padding: 100px 0 60px;
+    background: linear-gradient(135deg, var(--accent-color-4) 0%, var(--accent-color-2) 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23e9d07e' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+.contact-hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.contact-hero-content .lead {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    color: var(--light-text);
+    font-weight: 300;
+}
+
+/* Section Padding */
+.section-padding {
+    padding: 80px 0;
+}
+
+/* Contact Form Section */
+.contact-form-section {
+    background-color: var(--dark-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(15, 112, 100, 0.1) 0%, transparent 50%);
+}
+
+.contact-form-wrapper {
+    background: var(--card-bg);
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border: 1px solid var(--accent-color-4);
+    position: relative;
+    z-index: 1;
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.form-control {
+    padding: 12px 15px;
+    border: 2px solid var(--accent-color-4);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    font-family: 'Outfit', sans-serif;
+}
+
+.form-control::placeholder {
+    color: var(--accent-color-1);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(212, 63, 32, 0.25);
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+}
+
+.submit-btn {
+    background: var(--primary-color)!important;
+    color: white;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.submit-btn:hover {
+    background: #b5341a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 63, 32, 0.4);
+}
+
+/* Contact Info Section */
+.contact-info-section {
+    background-color: var(--card-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-info-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(233, 208, 126, 0.05) 0%, transparent 50%);
+}
+
+.contact-info-card {
+    padding: 40px 20px;
+    margin-bottom: 30px;
+    background: var(--dark-bg);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    border: 1px solid var(--accent-color-4);
+}
+
+.contact-info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border-color: var(--secondary-color);
+}
+
+.contact-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--dark-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    border: 2px solid var(--secondary-color);
+}
+
+.contact-icon i {
+    font-size: 2rem;
+    color: var(--secondary-color);
+}
+
+.contact-info-card h4 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+}
+
+.contact-info-card p {
+    color: var(--light-text);
+    margin: 0;
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+/* FAQ Section */
+.faq-section {
+    background-color: var(--dark-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(15, 112, 100, 0.1) 0%, transparent 50%);
+}
+
+.section-title {
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.section-title p {
+    color: var(--light-text);
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.accordion {
+    position: relative;
+    z-index: 1;
+}
+
+.accordion-item {
+    background: var(--card-bg);
+    border: 1px solid var(--accent-color-4);
+    border-radius: 10px !important;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.accordion-button {
+    background: var(--card-bg);
+    color: var(--secondary-color);
+    font-weight: 600;
+    padding: 20px;
+    border: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(212, 63, 32, 0.25);
+    border-color: var(--primary-color);
+}
+
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e9d07e'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-body {
+    padding: 20px;
+    color: var(--light-text);
+    font-weight: 300;
+    background: var(--dark-bg);
+    line-height: 1.7;
+}
+
+/* Footer */
+.footer-section {
+    padding: 50px 0 20px;
+    background-color: var(--accent-color-3);
+    color: white;
+    position: relative;
+}
+
+.footer-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(233, 208, 126, 0.05) 0%, transparent 50%);
+}
+
+.footer-logo h3 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.footer-menu ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+}
+
+.footer-menu ul li {
+    margin: 0 15px;
+}
+
+.footer-menu ul li a {
+    color: var(--light-text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 300;
+}
+
+.footer-menu ul li a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-copyright p {
+    margin: 0;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+}
+
+/* Form Validation Styles */
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .contact-hero-content h1 {
+        font-size: 2.8rem;
+    }
+    
+    .contact-form-wrapper {
+        padding: 30px;
+    }
+    
+    .contact-info-card {
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .contact-hero-section {
+        padding: 80px 0 40px;
+    }
+    
+    .contact-hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .contact-hero-content .lead {
+        font-size: 1.1rem;
+    }
+    
+    .section-padding {
+        padding: 60px 0;
+    }
+    
+    .footer-menu ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-menu ul li {
+        margin: 5px 0;
+    }
+    
+    .contact-form-wrapper {
+        padding: 20px;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.querySelector('.contact-form');
+    const successMessage = document.getElementById('success-message');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            const nombre = document.getElementById('nombre');
+            const email = document.getElementById('email');
+            const mensaje = document.getElementById('mensaje');
+            
+            let isValid = true;
+            
+            // Reset previous error states
+            [nombre, email, mensaje].forEach(field => {
+                field.classList.remove('is-invalid');
+            });
+            
+            // Remove existing alert
+            const existingAlert = document.querySelector('.alert-danger');
+            if (existingAlert) {
+                existingAlert.remove();
+            }
+            
+            // Validate nombre
+            if (nombre.value.trim() === '') {
+                nombre.classList.add('is-invalid');
+                isValid = false;
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value.trim())) {
+                email.classList.add('is-invalid');
+                isValid = false;
+            }
+            
+            // Validate mensaje
+            if (mensaje.value.trim() === '') {
+                mensaje.classList.add('is-invalid');
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                e.preventDefault();
+                // Show error message
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-danger mt-3';
+                alert.innerHTML = `
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    <strong>Error:</strong> Por favor, completa todos los campos correctamente.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                `;
+                contactForm.appendChild(alert);
+                
+                // Scroll to first error
+                const firstInvalid = contactForm.querySelector('.is-invalid');
+                if (firstInvalid) {
+                    firstInvalid.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                }
+            } else {
+                // Si el formulario es válido, mostrar mensaje de éxito después del envío
+                // Esto se ejecutará cuando el backend procese el formulario exitosamente
+                // Para demostración, podrías usar AJAX aquí
+            }
+        });
+    }
+    
+    // Check if we have a success parameter in URL (from backend redirect)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        successMessage.classList.remove('d-none');
+        successMessage.scrollIntoView({ behavior: 'smooth' });
+        
+        // Clean URL without reloading
+        const url = new URL(window.location);
+        url.searchParams.delete('success');
+        window.history.replaceState({}, '', url);
+    }
+    
+    // Add smooth scrolling for FAQ accordion
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+    accordionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            setTimeout(() => {
+                this.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }, 300);
+        });
+    });
+});
+</script>
+{% endblock %}

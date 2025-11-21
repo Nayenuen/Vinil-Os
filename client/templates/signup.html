@@ -1,0 +1,776 @@
+{% extends "navbar.html" %}
+
+{% block title %}Registro - Vinil'os{% endblock %}
+
+{% block content %}
+
+<!-- Register Hero Section -->
+<section class="register-hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1>Únete a la Comunidad Vinil'os</h1>
+                    <p>Descubre un mundo de música en vinilo y forma parte de nuestra comunidad de coleccionistas y amantes de la música.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Register Form Section -->
+<section class="register-section section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="register-form-container">
+                    <div class="section-title text-center mb-5">
+                        <h2>Crear Cuenta</h2>
+                        <p>Completa tus datos para comenzar</p>
+                    </div>
+
+                    {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        {{ error }}
+                    </div>
+                    {% endif %}
+
+                    <form class="form signup" action="/signup" method="POST" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="fname" class="form-label">Nombre</label>
+                                    <input 
+                                        type="text" 
+                                        id="fname" 
+                                        name="fname"
+                                        class="form-control"
+                                        placeholder="Tu nombre" 
+                                        required
+                                        autofocus
+                                        aria-label="Nombre"
+                                        maxlength="50">
+                                    <div class="form-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="lastname" class="form-label">Apellido</label>
+                                    <input 
+                                        type="text" 
+                                        id="lastname" 
+                                        name="lastname"
+                                        class="form-control"
+                                        placeholder="Tu apellido"
+                                        aria-label="Apellido"
+                                        maxlength="50">
+                                    <div class="form-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="email" class="form-label">Email</label>
+                            <input 
+                                type="email" 
+                                id="email"
+                                name="email" 
+                                class="form-control"
+                                placeholder="tu@email.com"
+                                aria-label="Email"
+                                autocomplete="email"
+                                required>
+                            <div class="form-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <input 
+                                        type="password" 
+                                        id="password" 
+                                        name="password" 
+                                        class="form-control"
+                                        placeholder="Tu contraseña"
+                                        aria-label="Contraseña"
+                                        required>
+                                    <div class="form-icon">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="cpassword" class="form-label">Confirmar Contraseña</label>
+                                    <input 
+                                        type="password" 
+                                        id="cpassword" 
+                                        name="cpassword"
+                                        class="form-control"
+                                        placeholder="Confirmar contraseña"
+                                        aria-label="Confirmar Contraseña" 
+                                        required>
+                                    <div class="form-icon">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Requisitos de la contraseña (ocultos inicialmente) -->
+                        <div id="requisitos" class="requisitos-container" style="display: none;">
+                            <p id="mayus" class="invalid">❌ Al menos una letra mayúscula</p>
+                            <p id="numero" class="invalid">❌ Al menos un número</p>
+                            <p id="especial" class="invalid">❌ Al menos un carácter especial (!@#$...)</p>
+                            <p id="longitud" class="invalid">❌ Mínimo 8 caracteres</p>
+                        </div>
+
+                        <!-- Mensaje de las contraseñas no coinciden (oculto inicialmente) -->
+                        <div id="coincide-container" style="display: none;">
+                            <p id="coincide" class="invalid">❌ Las contraseñas no coinciden</p>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="terms" required>
+                                <label class="form-check-label" for="terms">
+                                    Acepto los <a href="/terms" class="text-link">Términos y Condiciones</a> y la <a href="/privacy" class="text-link">Política de Privacidad</a>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions text-center">
+                            <button class="btn primary-btn btn-lg w-100" id="btnSubmit" type="submit" disabled>
+                                <i class="fas fa-user-plus me-2"></i>
+                                Crear Mi Cuenta
+                            </button>
+                        </div>
+
+                        <!-- Mensaje agregado -->
+                        <p id="msgFaltantes" class="invalid text-center mt-3" style="display:none;">
+                            Para registrarte, completa todos los campos correctamente
+                        </p>
+
+                        <div class="form-links text-center mt-4">
+                            <p>¿Ya tienes una cuenta? <a href="/login" class="text-link">Iniciar Sesión</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="benefits-section section-padding" style="background-color: var(--card-bg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-center">
+                    <h2>Beneficios de Ser Miembro</h2>
+                    <p>Descubre todo lo que te espera al unirte a Vinil'os</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="benefit-item text-center">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h4>Descuentos Exclusivos</h4>
+                    <p>Accede a ofertas especiales y precios de membresía en todos nuestros vinilos.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="benefit-item text-center">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h4>Envío Gratis</h4>
+                    <p>Disfruta de envío gratuito en pedidos superiores a $5000.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="benefit-item text-center">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <h4>Contenido Exclusivo</h4>
+                    <p>Accede a reseñas, lanzamientos anticipados y contenido especial para miembros.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Montserrat:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary-color: #d43f20;
+    --secondary-color: #e9d07e;
+    --accent-color-1: #817d6b;
+    --accent-color-2: #006f73;
+    --accent-color-3: #615b4d;
+    --accent-color-4: #0f7064;
+    --dark-bg: #122c2b;
+    --text-color: #f8f9fa;
+    --light-text: #e9ecef;
+    --card-bg: #1a3a39;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--dark-bg);
+}
+
+/* Tipografía - IDÉNTICO A CATÁLOGO */
+h1, h2, h3, h4, .section-title h2 {
+    font-family: 'Patrick Hand SC', cursive;
+    font-weight: normal;
+}
+
+h5, h6, .section-title p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+p, span, .form-label, .form-check-label {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Register Hero Section - ESTILO COHERENTE CON CATÁLOGO */
+.register-hero-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #1a3a39 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.register-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230f7064' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--light-text);
+    font-weight: 300;
+}
+
+.hero-img img {
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border: 2px solid var(--accent-color-4);
+}
+
+/* Section Padding - IGUAL QUE CATÁLOGO */
+.section-padding {
+    padding: 80px 0;
+}
+
+/* Section Title - IGUAL QUE CATÁLOGO */
+.section-title {
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.section-title p {
+    color: var(--light-text);
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+/* Register Form Container */
+.register-form-container {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 50px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border: 1px solid var(--accent-color-4);
+    position: relative;
+    overflow: hidden;
+}
+
+.register-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+/* Form Styles */
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control {
+    background: var(--dark-bg);
+    border: 1px solid var(--accent-color-4);
+    border-radius: 10px;
+    color: var(--text-color);
+    padding: 12px 45px 12px 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.form-control:focus {
+    background: var(--dark-bg);
+    border-color: var(--secondary-color);
+    color: var(--text-color);
+    box-shadow: 0 0 0 0.2rem rgba(233, 208, 126, 0.25);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: var(--accent-color-1);
+}
+
+.form-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-color-1);
+    font-size: 1rem;
+}
+
+.form-check {
+    margin-bottom: 1rem;
+}
+
+.form-check-input {
+    background-color: var(--dark-bg);
+    border: 1px solid var(--accent-color-4);
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.form-check-input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(233, 208, 126, 0.25);
+}
+
+.form-check-label {
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+.text-link {
+    color: var(--secondary-color)!important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.text-link:hover {
+    color: var(--primary-color);
+}
+
+/* Buttons - */
+.primary-btn {
+    background-color: var(--primary-color)!important;
+    color: white;
+    border: 2px solid var(--primary-color)!important;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+
+.primary-btn:hover:not(:disabled) {
+    background-color: transparent;
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 63, 32, 0.4);
+}
+
+.primary-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-lg {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* Alert Styles */
+.alert {
+    border-radius: 10px;
+    border: none;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+}
+
+.alert-danger {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+/* Benefits Section */
+.benefits-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.benefits-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(15, 112, 100, 0.1) 0%, transparent 50%);
+}
+
+.benefit-item {
+    background: var(--dark-bg);
+    border-radius: 15px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border: 1px solid var(--accent-color-4);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.benefit-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border-color: var(--secondary-color);
+}
+
+.benefit-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color-4));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 2rem;
+    color: white;
+}
+
+.benefit-item h4 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.benefit-item p {
+    color: var(--light-text);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Form Links */
+.form-links p {
+    color: var(--light-text);
+    margin: 0;
+}
+
+/* Validaciones de contraseña */
+.requisitos-container {
+    background: rgba(26, 58, 57, 0.7);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--accent-color-4);
+}
+
+.valid { 
+    color: #28a745; 
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+.invalid { 
+    color: #dc3545; 
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+#coincide-container {
+    margin-bottom: 20px;
+}
+
+#msgFaltantes {
+    font-size: 0.9rem;
+    color: #dc3545;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .register-form-container {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .register-hero-section {
+        padding: 60px 0;
+    }
+    
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .section-padding {
+        padding: 60px 0;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+    
+    .register-form-container {
+        padding: 30px 20px;
+    }
+    
+    .benefit-item {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero-text {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .hero-img {
+        text-align: center;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Variables para los campos del formulario
+    const password = document.getElementById("password");
+    const cpassword = document.getElementById("cpassword");
+    const email = document.getElementById("email");
+    const fname = document.getElementById("fname");
+    const lastname = document.getElementById("lastname");
+    const terms = document.getElementById("terms");
+    const btnSubmit = document.getElementById("btnSubmit");
+
+    const mayus = document.getElementById("mayus");
+    const numero = document.getElementById("numero");
+    const especial = document.getElementById("especial");
+    const longitud = document.getElementById("longitud");
+    const coincide = document.getElementById("coincide");
+    const requisitos = document.getElementById("requisitos");
+    const coincideContainer = document.getElementById("coincide-container");
+    const msgFaltantes = document.getElementById("msgFaltantes");
+
+    // Función para validar el email
+    function validarEmail() {
+        const valor = email.value;
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return emailRegex.test(valor);
+    }
+
+    // Función para validar la contraseña
+    function validarPassword() {
+        const valor = password.value;
+
+        if (valor.length > 0) {
+            requisitos.style.display = "block";
+        } else {
+            requisitos.style.display = "none";
+        }
+
+        let valido = true;
+
+        // Mayúsculas
+        if (/[A-Z]/.test(valor)) {
+            mayus.textContent = "✅ Al menos una letra mayúscula";
+            mayus.className = "valid";
+        } else {
+            mayus.textContent = "❌ Al menos una letra mayúscula";
+            mayus.className = "invalid";
+            valido = false;
+        }
+
+        // Números
+        if (/\d/.test(valor)) {
+            numero.textContent = "✅ Al menos un número";
+            numero.className = "valid";
+        } else {
+            numero.textContent = "❌ Al menos un número";
+            numero.className = "invalid";
+            valido = false;
+        }
+
+        // Caracter especial
+        if (/[!@#$%^&*(),.?":{}|<>]/.test(valor)) {
+            especial.textContent = "✅ Al menos un carácter especial (!@#$...)";
+            especial.className = "valid";
+        } else {
+            especial.textContent = "❌ Al menos un carácter especial (!@#$...)";
+            especial.className = "invalid";
+            valido = false;
+        }
+
+        // Longitud
+        if (valor.length >= 8) {
+            longitud.textContent = "✅ Mínimo 8 caracteres";
+            longitud.className = "valid";
+        } else {
+            longitud.textContent = "❌ Mínimo 8 caracteres";
+            longitud.className = "invalid";
+            valido = false;
+        }
+
+        return valido;
+    }
+
+    // Función para verificar que las contraseñas coincidan
+    function validarCoincidencia() {
+        if (password.value && cpassword.value && password.value === cpassword.value) {
+            coincide.textContent = "✅ Las contraseñas coinciden";
+            coincide.className = "valid";
+            coincideContainer.style.display = "block";
+        } else {
+            coincide.textContent = "❌ Las contraseñas no coinciden";
+            coincide.className = "invalid";
+            coincideContainer.style.display = "block";
+        }
+    }
+
+    // Función para verificar que todos los campos sean válidos
+    function verificarTodo() {
+        return (
+            fname.value.trim() !== "" &&
+            lastname.value.trim() !== "" &&
+            validarEmail() &&
+            validarPassword() &&
+            password.value === cpassword.value &&
+            terms.checked
+        );
+    }
+
+    // 🔥 Función actualizada para mostrar mensaje si faltan campos
+    function actualizarBoton() {
+        if (verificarTodo()) {
+            btnSubmit.disabled = false;
+            msgFaltantes.style.display = "none"; // Ocultar mensaje
+        } else {
+            btnSubmit.disabled = true;
+            msgFaltantes.style.display = "block"; // Mostrar mensaje
+        }
+    }
+
+    // Validaciones en tiempo real
+    password.addEventListener("input", () => {
+        validarPassword();
+        validarCoincidencia();
+        actualizarBoton();
+    });
+
+    cpassword.addEventListener("input", () => {
+        validarCoincidencia();
+        actualizarBoton();
+    });
+
+    email.addEventListener("input", actualizarBoton);
+    fname.addEventListener("input", actualizarBoton);
+    lastname.addEventListener("input", actualizarBoton);
+    terms.addEventListener("change", actualizarBoton);
+
+    // Validación de contraseñas coincidentes al enviar el formulario
+    const form = document.querySelector('.signup');
+    
+    form.addEventListener('submit', function(e) {
+        if (password.value !== cpassword.value) {
+            e.preventDefault();
+            validarCoincidencia();
+            return false;
+        }
+        
+        // Animación suave al enviar el formulario
+        const submitBtn = this.querySelector('.primary-btn');
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Creando cuenta...';
+        submitBtn.disabled = true;
+    });
+
+    // Efectos de focus en los campos del formulario
+    const formControls = document.querySelectorAll('.form-control');
+    
+    formControls.forEach(control => {
+        control.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+        
+        control.addEventListener('blur', function() {
+            if (this.value === '') {
+                this.parentElement.classList.remove('focused');
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

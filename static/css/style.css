@@ -1,0 +1,243 @@
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Decore Index, About*/
+
+article.content {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+    margin: 0 auto;
+    background: linear-gradient(to right, #e0e0e0, #c9c9c9);
+    border-radius: 10px;
+    padding: 50px 0 60px 0;
+
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.content .message {
+    color: green;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.content .content-action {
+    margin-top: 20px;
+    width: 250px;
+    padding: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content .btn {
+    display: inline-block;
+    width: 150px;
+    margin: 10px;
+    font-size: 12px;
+    padding: 8px 18px;
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.content a.singup {
+  /*color button orange gradient*/
+    background: linear-gradient(45deg, orange, darkorange);
+    color: white;
+}
+
+.content a.login {
+    background: linear-gradient(45deg, blue, darkblue);
+    color: white;
+     
+}
+
+
+
+/*Content-form login, signup contact*/
+
+.content-form h1 {
+    text-align: center;
+    margin-top: 20px;
+    /*paddin top righ*/
+    padding: 0 20px 0 0;
+}
+
+.content-form .error {
+    color: red;
+    margin-bottom: 15px;
+}
+
+article.content-form {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 750px;
+    margin: 0 auto;
+    background: linear-gradient(to right, #f0f0f0, #d9d9d9);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.content-form aside.title-decor {
+    /*padding top left right botton*/
+    padding: 0 0 0 60px;
+}
+
+.content-form h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.content-form .message {
+    color: green;
+    margin-bottom: 8px;
+    font-size: 14px;
+    text-align: left;
+
+}
+
+.content-form .form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-form form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /*Margin rigth top left botton*/
+    margin: 20px 20px 20px 20px;
+}
+
+.content-form form.login {
+    width: 100%;
+    max-width: 300px;
+}
+
+.content-form form.signup {
+    width: 300%;
+    max-width: 300px;
+}
+
+.content-form form.contact {
+    margin-left: 45px;
+    width: 75%;
+}
+
+.content-form .form-group {
+    margin-bottom: 15px;
+}
+
+.content-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.content-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.content-form .contact textarea {
+    height: 100px;
+    width: 100%;
+    resize: vertical;
+}
+
+.content-form .submit {
+    padding: 5px 15px 5px 15px;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+}
+
+.content-form .submit:hover {
+    background-color: darkblue;
+    cursor: pointer;
+}
+
+.content-form .form-links {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.form-links a {
+    color: blue;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+/*resposive mobile*/
+@media (max-width: 600px) {
+
+    /*vertical content without columns*/
+    article.content-form {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .content-form form {
+        padding: 10px;
+    }
+
+    .content-form h1 {
+        font-size: 1.5em;
+    }
+
+    .content-form input {
+        font-size: 1em;
+    }
+
+    .content-form .submit {
+        width: 100%;
+    }
+
+}
+
+
+/*Resonsive tablet*/
+@media (max-width: 900px) and (min-width: 601px) {
+    article.content-form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .content-form form {
+        padding: 15px;
+    }
+
+    .content-form h1 {
+        font-size: 1.75em;
+    }
+
+    .content-form input {
+        font-size: 1.1em;
+    }
+
+    .content-form .submit {
+        width: 100%;
+    }
+}
